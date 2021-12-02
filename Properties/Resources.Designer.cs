@@ -165,9 +165,72 @@ namespace AdventOfCode2021.Properties {
         ///284
         ///28 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Day1_Part1 {
+        internal static string Day1 {
             get {
-                return ResourceManager.GetString("Day1_Part1", resourceCulture);
+                return ResourceManager.GetString("Day1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to forward 5
+        ///forward 2
+        ///forward 9
+        ///down 2
+        ///forward 9
+        ///forward 3
+        ///forward 2
+        ///down 6
+        ///forward 3
+        ///forward 3
+        ///down 3
+        ///down 3
+        ///forward 8
+        ///down 5
+        ///forward 7
+        ///forward 9
+        ///forward 9
+        ///forward 6
+        ///forward 9
+        ///forward 3
+        ///forward 3
+        ///forward 1
+        ///forward 7
+        ///down 6
+        ///forward 7
+        ///forward 4
+        ///down 3
+        ///down 1
+        ///forward 4
+        ///down 7
+        ///down 2
+        ///down 8
+        ///forward 9
+        ///down 5
+        ///down 2
+        ///forward 6
+        ///up 4
+        ///down 3
+        ///down 1
+        ///down 6
+        ///down 7
+        ///forward 6
+        ///up 2
+        ///forward 2
+        ///down 9
+        ///down 3
+        ///forward 7
+        ///up 3
+        ///up 7
+        ///forward 8
+        ///forward 7
+        ///down 4
+        ///up 8
+        ///up 1
+        ///forward  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day2 {
+            get {
+                return ResourceManager.GetString("Day2", resourceCulture);
             }
         }
     }

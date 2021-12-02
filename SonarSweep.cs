@@ -85,7 +85,7 @@ namespace AdventOfCode2021
         public void Day1_Part1()
         {
             var sut = new SonarSweep();
-            int increases = sut.GetNumberOfIncreasesFrom(Resources.Day1_Part1);
+            int increases = sut.GetNumberOfIncreasesFrom(Resources.Day1);
             Assert.AreEqual(1301, increases);
         }
 
@@ -93,7 +93,7 @@ namespace AdventOfCode2021
         public void Day2_Part2()
         {
             var sut = new SonarSweep();
-            int increases = sut.GetNumberOfIncreasesOfThreeMeasurementWindows(Resources.Day1_Part1);
+            int increases = sut.GetNumberOfIncreasesOfThreeMeasurementWindows(Resources.Day1);
             Assert.AreEqual(1346, increases);
         }
     }
