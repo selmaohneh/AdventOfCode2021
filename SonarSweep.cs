@@ -85,16 +85,16 @@ namespace AdventOfCode2021
         public void Day1_Part1()
         {
             var sut = new SonarSweep();
-            int increases = sut.Part1(Resources.Day1);
-            Assert.AreEqual(1301, increases);
+            int result = sut.Part1(Resources.Day1);
+            Assert.AreEqual(1301, result);
         }
 
         [TestMethod]
         public void Day2_Part2()
         {
             var sut = new SonarSweep();
-            int increases = sut.Part2(Resources.Day1);
-            Assert.AreEqual(1346, increases);
+            int result = sut.Part2(Resources.Day1);
+            Assert.AreEqual(1346, result);
         }
     }
 }
