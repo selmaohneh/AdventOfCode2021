@@ -5,7 +5,7 @@ namespace AdventOfCode2021
 {
     internal class SonarSweep
     {
-        public int GetNumberOfIncreasesFrom(string input)
+        public int Part1(string input)
         {
             List<int> depths = GetDepthsFromInput(input);
 
@@ -14,7 +14,7 @@ namespace AdventOfCode2021
             return numberOfIncreases;
         }
 
-        public int GetNumberOfIncreasesOfThreeMeasurementWindows(string input)
+        public int Part2(string input)
         {
             var depths = GetDepthsFromInput(input);
 
@@ -85,7 +85,7 @@ namespace AdventOfCode2021
         public void Day1_Part1()
         {
             var sut = new SonarSweep();
-            int increases = sut.GetNumberOfIncreasesFrom(Resources.Day1);
+            int increases = sut.Part1(Resources.Day1);
             Assert.AreEqual(1301, increases);
         }
 
@@ -93,7 +93,7 @@ namespace AdventOfCode2021
         public void Day2_Part2()
         {
             var sut = new SonarSweep();
-            int increases = sut.GetNumberOfIncreasesOfThreeMeasurementWindows(Resources.Day1);
+            int increases = sut.Part2(Resources.Day1);
             Assert.AreEqual(1346, increases);
         }
     }
