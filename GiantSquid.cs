@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AdventOfCode2021.Properties;
+﻿using AdventOfCode2021.Properties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
@@ -13,8 +8,60 @@ namespace AdventOfCode2021
         public int Part1(string input)
         {
             string[] splitInput = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            List<int> randomNumbers = ExtractRandomNumbers(splitInput);
+
+            List<Board> boards = BuildsBoards(splitInput);
+
+            foreach (int randomNumber in randomNumbers)
+            {
+                foreach (Board board in boards)
+                {
+                    board.Mark(randomNumber);
+                    bool won = board.HasBoardWon();
+
+                    if (won)
+                    {
+                        return board.GetSumOfUnmarkedNumbers() * randomNumber;
+                    }
+                }
+            }
+
+            throw new Exception();
+        }
+
+        public int Part2(string input)
+        {
+            string[] splitInput = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            List<int> randomNumbers = ExtractRandomNumbers(splitInput);
+
+            List<Board> boards = BuildsBoards(splitInput);
+
+            foreach (int randomNumber in randomNumbers)
+            {
+                foreach (Board board in boards)
+                {
+                    board.Mark(randomNumber);
+                    board.HasBoardWon();
+
+                    if (boards.All(x => x.HasBoardWon()))
+                    {
+                        return board.GetSumOfUnmarkedNumbers() * randomNumber;
+                    }
+                }
+            }
+
+            throw new Exception();
+        }
+
+        private List<int> ExtractRandomNumbers(string[] splitInput)
+        {
             var randomNumbers = splitInput[0].Split(",").Select(Int32.Parse).ToList();
 
+            return randomNumbers;
+        }
+
+        private List<Board> BuildsBoards(string[] splitInput)
+        {
             var boards = new List<Board>();
             var currentBoard = new Board();
 
@@ -40,21 +87,7 @@ namespace AdventOfCode2021
 
             boards.Add(currentBoard);
 
-            foreach (int randomNumber in randomNumbers)
-            {
-                foreach (Board board in boards)
-                {
-                    board.Mark(randomNumber);
-                    bool won = board.HasBoardWon();
-
-                    if (won)
-                    {
-                        return board.GetSumOfUnmarkedNumbers() * randomNumber;
-                    }
-                }
-            }
-
-            throw new Exception();
+            return boards;
         }
     }
 
@@ -160,6 +193,16 @@ namespace AdventOfCode2021
             int result = sut.Part1(Resources.Day4);
 
             Assert.AreEqual(23177, result);
+        }
+
+        [TestMethod]
+        public void Day4_Part2()
+        {
+            var sut = new GiantSquid();
+
+            int result = sut.Part2(Resources.Day4);
+
+            Assert.AreEqual(6804, result);
         }
     }
 }
