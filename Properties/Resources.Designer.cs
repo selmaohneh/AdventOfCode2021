@@ -304,5 +304,40 @@ namespace AdventOfCode2021.Properties {
                 return ResourceManager.GetString("Day4", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 510,771 -&gt; 510,322
+        ///753,99 -&gt; 753,280
+        ///160,330 -&gt; 33,330
+        ///700,793 -&gt; 700,892
+        ///327,168 -&gt; 327,690
+        ///264,203 -&gt; 264,839
+        ///135,134 -&gt; 314,134
+        ///209,759 -&gt; 41,759
+        ///474,514 -&gt; 491,531
+        ///977,988 -&gt; 42,53
+        ///924,245 -&gt; 278,891
+        ///466,952 -&gt; 466,135
+        ///381,560 -&gt; 822,119
+        ///339,828 -&gt; 339,730
+        ///114,775 -&gt; 114,508
+        ///472,44 -&gt; 472,32
+        ///815,512 -&gt; 188,512
+        ///516,579 -&gt; 987,108
+        ///219,386 -&gt; 219,838
+        ///456,592 -&gt; 456,496
+        ///778,300 -&gt; 355,300
+        ///277,27 -&gt; 69,27
+        ///889,217 -&gt; 307,799
+        ///470,471 -&gt; 249,471
+        ///655,867 -&gt; 20,232
+        ///845,623 -&gt; 675,623
+        ///278 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day5 {
+            get {
+                return ResourceManager.GetString("Day5", resourceCulture);
+            }
+        }
     }
 }
