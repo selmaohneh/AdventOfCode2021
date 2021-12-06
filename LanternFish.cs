@@ -32,94 +32,36 @@ namespace AdventOfCode2021
             return fishes.Count;
         }
 
-        public int Part2(string input)
+        public float Part2(string input)
         {
             var initialFishes = input.Split(",").Select(Int32.Parse).ToList();
 
-            File.WriteAllLines("currentfile.txt", initialFishes.Select(x => x.ToString()));
+            float[] countsPerNumber = new float[9];
+
+            foreach (int initialFish in initialFishes)
+            {
+                countsPerNumber[initialFish]++;
+            }
 
             for (int dayIndex = 0; dayIndex < 256; dayIndex++)
             {
-                int zeroFishes = CountZeros();
+                float births = countsPerNumber[0];
 
-                CreateFileWithUpdatedFishNumbers(zeroFishes);
-
-                File.Replace("newfile.txt", "currentfile.txt", null);
-            }
-
-            int allFish = 0;
-
-            using StreamReader reader = File.OpenText("currentfile.txt");
-
-            while (reader.ReadLine() != null)
-            {
-                allFish++;
-            }
-
-            return allFish;
-        }
-
-        private static void CreateFileWithUpdatedFishNumbers(int zeroFishes)
-        {
-            File.Create("newfile.txt").Close();
-
-            using (StreamReader reader = File.OpenText("currentfile.txt"))
-            {
-                string line = String.Empty;
-
-                while ((line = reader.ReadLine()) != null)
+                for (int numberIndex = 0; numberIndex < countsPerNumber.Length; numberIndex++)
                 {
-                    int fish = Int32.Parse(line);
-
-                    int fishNew = fish - 1;
-
-                    if (fishNew < 0)
+                    if (numberIndex == 8)
                     {
-                        fishNew = 6;
+                        countsPerNumber[8] = births;
+                        countsPerNumber[6] += births;
+
+                        continue;
                     }
 
-                    using (FileStream stream = File.Open("newfile.txt", FileMode.Append))
-                    {
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            writer.WriteLine(fishNew);
-                        }
-                    }
+                    countsPerNumber[numberIndex] = countsPerNumber[numberIndex + 1];
                 }
             }
 
-            using (FileStream stream = File.Open("newfile.txt", FileMode.Append))
-            {
-                using (var writer = new StreamWriter(stream))
-                {
-                    for (int i = 0; i < zeroFishes; i++)
-                    {
-                        writer.WriteLine(8);
-                    }
-                }
-            }
-        }
-
-        private static int CountZeros()
-        {
-            int zeroFishes = 0;
-
-            using (StreamReader reader = File.OpenText("currentfile.txt"))
-            {
-                string line = String.Empty;
-
-                while ((line = reader.ReadLine()) != null)
-                {
-                    int fish = Int32.Parse(line);
-
-                    if (fish == 0)
-                    {
-                        zeroFishes++;
-                    }
-                }
-            }
-
-            return zeroFishes;
+            return countsPerNumber.Sum();
         }
     }
 
@@ -141,7 +83,7 @@ namespace AdventOfCode2021
         {
             var sut = new LanternFish();
 
-            int result = sut.Part2(Resources.Day6);
+            float result = sut.Part2(Resources.Day6);
 
             Assert.AreEqual(1675781200288, result);
         }
