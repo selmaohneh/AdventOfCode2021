@@ -1,13 +1,14 @@
 ﻿using AdventOfCode2021.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class BinaryDiagnostic
+    internal class Day3 : IAdeventOfCodeDay
     {
-        public long Part1(string input)
+        public string Input { get; } = Resources.Day3;
+
+        public string Part1()
         {
-            var diagnostics = GetDiagnosticsFromInput(input);
+            var diagnostics = GetDiagnosticsFromInput(Input);
 
             string mostCommonBits = String.Empty;
             string leastCommonBits = String.Empty;
@@ -16,9 +17,9 @@ namespace AdventOfCode2021
 
             for (int i = 0; i < positions[0].Length; i++)
             {
-                MostCommonBit commonBit = GetMostCommonBit(i, positions);
+                EMostCommonBit commonBit = GetMostCommonBit(i, positions);
 
-                if (commonBit is MostCommonBit.Zero)
+                if (commonBit is EMostCommonBit.Zero)
                 {
                     mostCommonBits += '0';
                     leastCommonBits += '1';
@@ -35,27 +36,27 @@ namespace AdventOfCode2021
 
             long powerConsumption = gammeRate * epsilonRate;
 
-            return powerConsumption;
+            return powerConsumption.ToString();
         }
 
-        public long Part2(string input)
+        public string Part2()
         {
-            var diagnostics = GetDiagnosticsFromInput(input);
+            var diagnostics = GetDiagnosticsFromInput(Input);
 
             int oxygenGeneratorRating = GetOxygenGeneratorRating(diagnostics);
             int co2ScrubberRating = GetCo2ScrubberRating(diagnostics);
 
-            return oxygenGeneratorRating * co2ScrubberRating;
+            return (oxygenGeneratorRating * co2ScrubberRating).ToString();
         }
 
-        public enum MostCommonBit
+        public enum EMostCommonBit
         {
             Zero,
             Equal,
             One
         }
 
-        private MostCommonBit GetMostCommonBit(int currentPosition, IEnumerable<char[]> positions)
+        private EMostCommonBit GetMostCommonBit(int currentPosition, IEnumerable<char[]> positions)
         {
             var currentBits = positions.Select(x => x[currentPosition]).ToList();
 
@@ -64,15 +65,15 @@ namespace AdventOfCode2021
 
             if (numberOfOnes > numberOfZeros)
             {
-                return MostCommonBit.One;
+                return EMostCommonBit.One;
             }
 
             if (numberOfOnes < numberOfZeros)
             {
-                return MostCommonBit.Zero;
+                return EMostCommonBit.Zero;
             }
 
-            return MostCommonBit.Equal;
+            return EMostCommonBit.Equal;
         }
 
         private int GetOxygenGeneratorRating(List<string> diagnostics)
@@ -82,9 +83,9 @@ namespace AdventOfCode2021
 
             while (true)
             {
-                MostCommonBit commonBit = GetMostCommonBit(currentPosition, positions);
+                EMostCommonBit commonBit = GetMostCommonBit(currentPosition, positions);
 
-                if (commonBit is MostCommonBit.Zero)
+                if (commonBit is EMostCommonBit.Zero)
                 {
                     positions = positions.Where(x => x[currentPosition] == '0').ToList();
                 }
@@ -111,9 +112,9 @@ namespace AdventOfCode2021
 
             while (true)
             {
-                MostCommonBit commonBit = GetMostCommonBit(currentPosition, positions);
+                EMostCommonBit commonBit = GetMostCommonBit(currentPosition, positions);
 
-                if (commonBit is MostCommonBit.Zero)
+                if (commonBit is EMostCommonBit.Zero)
                 {
                     positions = positions.Where(x => x[currentPosition] == '1').ToList();
                 }
@@ -138,26 +139,6 @@ namespace AdventOfCode2021
             string[] diagnostics = input.Split(Environment.NewLine);
 
             return diagnostics.ToList();
-        }
-    }
-
-    [TestClass]
-    public class Day3
-    {
-        [TestMethod]
-        public void Day3_Part1()
-        {
-            var sut = new BinaryDiagnostic();
-            long result = sut.Part1(Resources.Day3);
-            Assert.AreEqual(841526, result);
-        }
-
-        [TestMethod]
-        public void Day3_Part2()
-        {
-            var sut = new BinaryDiagnostic();
-            long result = sut.Part2(Resources.Day3);
-            Assert.AreEqual(4790390, result);
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using AdventOfCode2021.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class LanternFish
+    internal class Day6 : IAdeventOfCodeDay
     {
-        public int Part1(string input)
+        public string Input { get; } = Resources.Day6;
+
+        public string Part1()
         {
-            var fishes = input.Split(",").Select(Int32.Parse).ToList();
+            var fishes = Input.Split(",").Select(Int32.Parse).ToList();
 
             for (int dayIndex = 0; dayIndex < 80; dayIndex++)
             {
@@ -29,14 +30,14 @@ namespace AdventOfCode2021
                 }
             }
 
-            return fishes.Count;
+            return fishes.Count.ToString();
         }
 
-        public float Part2(string input)
+        public string Part2()
         {
-            var initialFishes = input.Split(",").Select(Int32.Parse).ToList();
+            var initialFishes = Input.Split(",").Select(Int32.Parse).ToList();
 
-            float[] countsPerNumber = new float[9];
+            long[] countsPerNumber = new long[9];
 
             foreach (int initialFish in initialFishes)
             {
@@ -45,7 +46,7 @@ namespace AdventOfCode2021
 
             for (int dayIndex = 0; dayIndex < 256; dayIndex++)
             {
-                float births = countsPerNumber[0];
+                long births = countsPerNumber[0];
 
                 for (int numberIndex = 0; numberIndex < countsPerNumber.Length; numberIndex++)
                 {
@@ -61,31 +62,7 @@ namespace AdventOfCode2021
                 }
             }
 
-            return countsPerNumber.Sum();
-        }
-    }
-
-    [TestClass]
-    public class Day6
-    {
-        [TestMethod]
-        public void Day6_Part1()
-        {
-            var sut = new LanternFish();
-
-            int result = sut.Part1(Resources.Day6);
-
-            Assert.AreEqual(372300, result);
-        }
-
-        [TestMethod]
-        public void Day6_Part2()
-        {
-            var sut = new LanternFish();
-
-            float result = sut.Part2(Resources.Day6);
-
-            Assert.AreEqual(1675781200288, result);
+            return countsPerNumber.Sum().ToString();
         }
     }
 }

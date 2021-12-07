@@ -1,28 +1,29 @@
 ﻿using AdventOfCode2021.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class SonarSweep
+    internal class Day1 : IAdeventOfCodeDay
     {
-        public int Part1(string input)
+        public string Input { get; } = Resources.Day1;
+
+        public string Part1()
         {
-            List<int> depths = GetDepthsFromInput(input);
+            List<int> depths = GetDepthsFromInput(Input);
 
             int numberOfIncreases = GetNumberOfIncreases(depths);
 
-            return numberOfIncreases;
+            return numberOfIncreases.ToString();
         }
 
-        public int Part2(string input)
+        public string Part2()
         {
-            var depths = GetDepthsFromInput(input);
+            var depths = GetDepthsFromInput(Input);
 
             List<int> windows = GetSumsOfThreeMeasurementWindows(depths);
 
             int numberOfIncreases = GetNumberOfIncreases(windows);
 
-            return numberOfIncreases;
+            return numberOfIncreases.ToString();
         }
 
         private List<int> GetSumsOfThreeMeasurementWindows(List<int> depths)
@@ -75,26 +76,6 @@ namespace AdventOfCode2021
             }
 
             return numberOfIncreases;
-        }
-    }
-
-    [TestClass]
-    public class Day1
-    {
-        [TestMethod]
-        public void Day1_Part1()
-        {
-            var sut = new SonarSweep();
-            int result = sut.Part1(Resources.Day1);
-            Assert.AreEqual(1301, result);
-        }
-
-        [TestMethod]
-        public void Day2_Part2()
-        {
-            var sut = new SonarSweep();
-            int result = sut.Part2(Resources.Day1);
-            Assert.AreEqual(1346, result);
         }
     }
 }

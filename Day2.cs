@@ -1,13 +1,14 @@
 ﻿using AdventOfCode2021.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Dive
+    internal class Day2 : IAdeventOfCodeDay
     {
-        public int Part1(string input)
+        public string Input { get; } = Resources.Day2;
+
+        public string Part1()
         {
-            var commands = GetCommandsFromInput(input);
+            var commands = GetCommandsFromInput(Input);
 
             int horizontalPosition = 0;
             int depth = 0;
@@ -32,12 +33,12 @@ namespace AdventOfCode2021
                 }
             }
 
-            return depth * horizontalPosition;
+            return (depth * horizontalPosition).ToString();
         }
 
-        public int Part2(string input)
+        public string Part2()
         {
-            var commands = GetCommandsFromInput(input);
+            var commands = GetCommandsFromInput(Input);
 
             int horizontalPosition = 0;
             int depth = 0;
@@ -64,7 +65,7 @@ namespace AdventOfCode2021
                 }
             }
 
-            return depth * horizontalPosition;
+            return (depth * horizontalPosition).ToString();
         }
 
         private List<string> GetCommandsFromInput(string input)
@@ -81,30 +82,6 @@ namespace AdventOfCode2021
             int commandArgument = Int32.Parse(commandParts[1]);
 
             return (commandAction, commandArgument);
-        }
-    }
-
-    [TestClass]
-    public class Day2
-    {
-        [TestMethod]
-        public void Day2_Part1()
-        {
-            var sut = new Dive();
-
-            int result = sut.Part1(Resources.Day2);
-
-            Assert.AreEqual(1636725, result);
-        }
-
-        [TestMethod]
-        public void Day2_Part2()
-        {
-            var sut = new Dive();
-
-            int result = sut.Part2(Resources.Day2);
-
-            Assert.AreEqual(1872757425, result);
         }
     }
 }

@@ -1,17 +1,18 @@
 ﻿using AdventOfCode2021.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021;
 
-internal class HydrothermalVenture
+internal class Day5
 {
-    public int Part1(string input)
+    public string Input { get; } = Resources.Day5;
+
+    public string Part1()
     {
-        List<Line> lines = GetLinesFromInput(input);
+        List<Line> lines = GetLinesFromInput(Input);
 
         var allPoints = lines.SelectMany(x => x.GetPointsOfLine(includeDiagonals: false)).ToList();
 
-        return GetDuplicatesCount(allPoints);
+        return GetDuplicatesCount(allPoints).ToString();
     }
 
     private int GetDuplicatesCount(List<Point> allPoints)
@@ -52,13 +53,13 @@ internal class HydrothermalVenture
         return lines;
     }
 
-    public int Part2(string input)
+    public string Part2()
     {
-        List<Line> lines = GetLinesFromInput(input);
+        List<Line> lines = GetLinesFromInput(Input);
 
         var allPoints = lines.SelectMany(x => x.GetPointsOfLine(includeDiagonals: true)).ToList();
 
-        return GetDuplicatesCount(allPoints);
+        return GetDuplicatesCount(allPoints).ToString();
     }
 
     public class Point
@@ -147,29 +148,5 @@ internal class HydrothermalVenture
 
         public Point Start { get; set; }
         public Point End { get; set; }
-    }
-}
-
-[TestClass]
-public class Day5
-{
-    [TestMethod]
-    public void Day5_Part1()
-    {
-        var sut = new HydrothermalVenture();
-
-        int result = sut.Part1(Resources.Day5);
-
-        Assert.AreEqual(6397, result);
-    }
-
-    [TestMethod]
-    public void Day5_Part2()
-    {
-        var sut = new HydrothermalVenture();
-
-        int result = sut.Part2(Resources.Day5);
-
-        Assert.AreEqual(22335, result);
     }
 }

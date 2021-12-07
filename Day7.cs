@@ -1,13 +1,14 @@
 ﻿using AdventOfCode2021.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day07
+    internal class Day7 : IAdeventOfCodeDay
     {
-        public int Part1(string input)
+        public string Input { get; } = Resources.Day7;
+
+        public string Part1()
         {
-            var initialPositions = input.Split(",").Select(Int32.Parse).ToList();
+            var initialPositions = Input.Split(",").Select(Int32.Parse).ToList();
 
             int minPosition = initialPositions.Min();
             int maxPosition = initialPositions.Max();
@@ -27,12 +28,12 @@ namespace AdventOfCode2021
                 fuelConsumptionsPerTargetPosition.Add(totalFuelConsumption);
             }
 
-            return fuelConsumptionsPerTargetPosition.Min();
+            return fuelConsumptionsPerTargetPosition.Min().ToString();
         }
 
-        public int Part2(string input)
+        public string Part2()
         {
-            var initialPositions = input.Split(",").Select(Int32.Parse).ToList();
+            var initialPositions = Input.Split(",").Select(Int32.Parse).ToList();
 
             int minPosition = initialPositions.Min();
             int maxPosition = initialPositions.Max();
@@ -57,31 +58,7 @@ namespace AdventOfCode2021
                 fuelConsumptionsPerTargetPosition.Add(totalFuelConsumption);
             }
 
-            return fuelConsumptionsPerTargetPosition.Min();
-        }
-    }
-
-    [TestClass]
-    public class Day7
-    {
-        [TestMethod]
-        public void Day7_Part1()
-        {
-            var sut = new Day07();
-
-            int result = sut.Part1(Resources.Day7);
-
-            Assert.AreEqual(328262, result);
-        }
-
-        [TestMethod]
-        public void Day7_Part2()
-        {
-            var sut = new Day07();
-
-            int result = sut.Part2(Resources.Day7);
-
-            Assert.AreEqual(90040997, result);
+            return fuelConsumptionsPerTargetPosition.Min().ToString();
         }
     }
 }

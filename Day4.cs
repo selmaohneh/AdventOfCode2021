@@ -1,13 +1,14 @@
 ﻿using AdventOfCode2021.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class GiantSquid
+    internal class Day4 : IAdeventOfCodeDay
     {
-        public int Part1(string input)
+        public string Input { get; } = Resources.Day4;
+
+        public string Part1()
         {
-            string[] splitInput = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitInput = Input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             List<int> randomNumbers = ExtractRandomNumbers(splitInput);
 
             List<Board> boards = BuildsBoards(splitInput);
@@ -21,7 +22,7 @@ namespace AdventOfCode2021
 
                     if (won)
                     {
-                        return board.GetSumOfUnmarkedNumbers() * randomNumber;
+                        return (board.GetSumOfUnmarkedNumbers() * randomNumber).ToString();
                     }
                 }
             }
@@ -29,9 +30,9 @@ namespace AdventOfCode2021
             throw new Exception();
         }
 
-        public int Part2(string input)
+        public string Part2()
         {
-            string[] splitInput = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitInput = Input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             List<int> randomNumbers = ExtractRandomNumbers(splitInput);
 
             List<Board> boards = BuildsBoards(splitInput);
@@ -45,7 +46,7 @@ namespace AdventOfCode2021
 
                     if (boards.All(x => x.HasBoardWon()))
                     {
-                        return board.GetSumOfUnmarkedNumbers() * randomNumber;
+                        return (board.GetSumOfUnmarkedNumbers() * randomNumber).ToString();
                     }
                 }
             }
@@ -179,30 +180,6 @@ namespace AdventOfCode2021
         public int GetSumOfUnmarkedNumbers()
         {
             return Cells.Where(x => !x.Marked).Select(x => x.Number).Sum();
-        }
-    }
-
-    [TestClass]
-    public class Day4
-    {
-        [TestMethod]
-        public void Day4_Part1()
-        {
-            var sut = new GiantSquid();
-
-            int result = sut.Part1(Resources.Day4);
-
-            Assert.AreEqual(23177, result);
-        }
-
-        [TestMethod]
-        public void Day4_Part2()
-        {
-            var sut = new GiantSquid();
-
-            int result = sut.Part2(Resources.Day4);
-
-            Assert.AreEqual(6804, result);
         }
     }
 }
