@@ -4,7 +4,6 @@ namespace AdventOfCode2021
 {
     internal class Day8 : IAdeventOfCodeDay
     {
-        private Dictionary<int, Segment> _decodedSegments;
         public string Input => Resources.Day8;
 
         public string Part1()
@@ -44,84 +43,15 @@ namespace AdventOfCode2021
                 string[] inputValues = splitValues[0].Split(" ");
                 string[] outputValues = splitValues[1].Split(" ");
 
-                _decodedSegments = new Dictionary<int, Segment>();
-
-                while (_decodedSegments.Count < 10)
-                {
-                    foreach (string inputValue in inputValues)
-                    {
-                        int characterCount = inputValue.Length;
-
-                        if (characterCount is 2)
-                        {
-                            AddToDecodedSegments(1, inputValue);
-                        }
-
-                        if (characterCount is 4)
-                        {
-                            AddToDecodedSegments(4, inputValue);
-                        }
-
-                        if (characterCount is 3)
-                        {
-                            AddToDecodedSegments(7, inputValue);
-                        }
-
-                        if (characterCount is 7)
-                        {
-                            AddToDecodedSegments(8, inputValue);
-                        }
-
-                        if (_decodedSegments.ContainsKey(4) && _decodedSegments[4].ContainsAllWiresFrom(inputValue) && characterCount is 6)
-                        {
-                            AddToDecodedSegments(9, inputValue);
-                        }
-
-                        if (_decodedSegments.ContainsKey(1) && !_decodedSegments[1].ContainsAllWiresFrom(inputValue) && characterCount is 6)
-                        {
-                            AddToDecodedSegments(6, inputValue);
-                        }
-
-                        if (_decodedSegments.ContainsKey(1) && _decodedSegments[1].ContainsAllWiresFrom(inputValue) && characterCount is 5)
-                        {
-                            AddToDecodedSegments(3, inputValue);
-                        }
-
-                        if (_decodedSegments.ContainsKey(1)
-                         && _decodedSegments.ContainsKey(4)
-                         && _decodedSegments[1].ContainsAllWiresFrom(inputValue)
-                         && !_decodedSegments[4].ContainsAllWiresFrom(inputValue)
-                         && characterCount is 6)
-                        {
-                            AddToDecodedSegments(0, inputValue);
-                        }
-
-                        if (_decodedSegments.ContainsKey(4) && _decodedSegments[4].GetCommonWiresWith(inputValue) == 2 && characterCount is 5)
-                        {
-                            AddToDecodedSegments(2, inputValue);
-                        }
-
-                        if (_decodedSegments.Count == 9)
-                        {
-                            if (_decodedSegments.Any(x => x.Value.Equal(inputValue)))
-                            {
-                                continue;
-                            }
-
-                            AddToDecodedSegments(5, inputValue);
-                        }
-                    }
-                }
+                var decodedSegments = DecodeAllSegments(inputValues);
 
                 string numberString = String.Empty;
 
                 foreach (string outputValue in outputValues)
                 {
-                    foreach (Segment segment in _decodedSegments.Values)
+                    foreach (Segment segment in decodedSegments.Values)
                     {
-                        var bla = segment.Chars.ToList();
-
-                        if (segment.Equal(outputValue))
+                        if (segment.IsTheSameAs(outputValue))
                         {
                             numberString += segment.Number.ToString();
                         }
@@ -135,27 +65,74 @@ namespace AdventOfCode2021
             return result.ToString();
         }
 
-        private void AddToDecodedSegments(int number, string inputValue)
+        private Dictionary<int, Segment> DecodeAllSegments(string[] inputValues)
         {
-            var segment = new Segment
-            {
-                Number = number,
-                Chars = inputValue.ToCharArray()
-            };
+            var decodedSegments = new Dictionary<int, Segment>();
 
-            _decodedSegments.TryAdd(number, segment);
+            while (decodedSegments.Count < 10)
+            {
+                foreach (string inputValue in inputValues)
+                {
+                    int characterCount = inputValue.Length;
+
+                    var rules = new List<bool>();
+
+                    bool isAZero = decodedSegments.ContainsKey(1)
+                                && decodedSegments.ContainsKey(4)
+                                && decodedSegments[1].IsPresentIn(inputValue)
+                                && !decodedSegments[4].IsPresentIn(inputValue)
+                                && characterCount is 6;
+                    bool isAOne = characterCount is 2;
+                    bool isATwo = decodedSegments.ContainsKey(4) && decodedSegments[4].GetCommonWiresWith(inputValue) == 2 && characterCount is 5;
+                    bool isAThree = decodedSegments.ContainsKey(1) && decodedSegments[1].IsPresentIn(inputValue) && characterCount is 5;
+                    bool isAFour = characterCount is 4;
+                    bool isAFive = decodedSegments.Count == 9 && decodedSegments.All(x => x.Value.Wires != inputValue);
+                    bool isASix = decodedSegments.ContainsKey(1) && !decodedSegments[1].IsPresentIn(inputValue) && characterCount is 6;
+                    bool isASeven = characterCount is 3;
+                    bool isAnEight = characterCount is 7;
+                    bool isANine = decodedSegments.ContainsKey(4) && decodedSegments[4].IsPresentIn(inputValue) && characterCount is 6;
+
+                    rules.Add(isAZero);
+                    rules.Add(isAOne);
+                    rules.Add(isATwo);
+                    rules.Add(isAThree);
+                    rules.Add(isAFour);
+                    rules.Add(isAFive);
+                    rules.Add(isASix);
+                    rules.Add(isASeven);
+                    rules.Add(isAnEight);
+                    rules.Add(isANine);
+
+                    for (int number = 0; number < rules.Count; number++)
+                    {
+                        if (rules[number])
+                        {
+                            var segment = new Segment(number, inputValue);
+                            decodedSegments.TryAdd(number, segment);
+                        }
+                    }
+                }
+            }
+
+            return decodedSegments;
         }
 
         private class Segment
         {
-            public int Number { get; set; }
-            public IEnumerable<char> Chars { get; set; }
-
-            public bool ContainsAllWiresFrom(string inputValue)
+            public Segment(int number, string wires)
             {
-                var inputChars = inputValue.ToCharArray();
+                Number = number;
+                Wires = wires;
+            }
 
-                foreach (char currentChar in Chars)
+            public int Number { get; }
+            public string Wires { get; }
+
+            public bool IsPresentIn(string inputValue)
+            {
+                char[] inputChars = inputValue.ToCharArray();
+
+                foreach (char currentChar in Wires)
                 {
                     if (!inputChars.Contains(currentChar))
                     {
@@ -166,32 +143,32 @@ namespace AdventOfCode2021
                 return true;
             }
 
-            public bool Equal(string inputValue)
-            {
-                foreach (char currentChar in inputValue)
-                {
-                    if (!Chars.Contains(currentChar))
-                    {
-                        return false;
-                    }
-                }
-
-                return inputValue.Length == Chars.Count();
-            }
-
             public int GetCommonWiresWith(string inputValue)
             {
                 int commonWires = 0;
 
-                foreach (char currentChar in inputValue.ToCharArray())
+                foreach (char currentChar in inputValue)
                 {
-                    if (Chars.Contains(currentChar))
+                    if (Wires.Contains(currentChar))
                     {
                         commonWires++;
                     }
                 }
 
                 return commonWires;
+            }
+
+            public bool IsTheSameAs(string inputValue)
+            {
+                foreach (char currentChar in inputValue)
+                {
+                    if (!Wires.Contains(currentChar))
+                    {
+                        return false;
+                    }
+                }
+
+                return inputValue.Length == Wires.Length;
             }
         }
     }
