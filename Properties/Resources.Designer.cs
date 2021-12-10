@@ -172,6 +172,37 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [&lt;&lt;{[{([([({&lt;{&lt;&gt;{}}&gt;[[[]{}][[]&lt;&gt;])}{[(())][[&lt;&gt;{}]{[]{}}]})](([{&lt;&lt;&gt;{}&gt;[()&lt;&gt;]}&lt;&lt;&lt;&gt;()&gt;{{}&lt;&gt;}&gt;]{[{{}()}[(){}]]})
+        ///[({[[(&lt;{[&lt;[&lt;{({}[])(&lt;&gt;{})}(([]&lt;&gt;)[[]()])&gt;{[&lt;{}()&gt;&lt;{}{}&gt;][&lt;[]()&gt;({}())]}]&lt;(&lt;(()&lt;&gt;){{}{}}&gt;({()()}(()[])))&gt;&gt;[([
+        ///(&lt;([[&lt;(&lt;&lt;{((&lt;&lt;&lt;&gt;{}&gt;{{}{}}&gt;({()&lt;&gt;}{()&lt;&gt;}))&lt;[(&lt;&gt;&lt;&gt;)&lt;&lt;&gt;()&gt;]{((){}){[]&lt;&gt;}}&gt;)}({&lt;[(()[]){()[]}]{((
+        ///&lt;[(&lt;{[{{([([{{{}&lt;&gt;}}{{&lt;&gt;()}&lt;&lt;&gt;&gt;}]){[[&lt;[]&lt;&gt;&gt;(())]&lt;&lt;&lt;&gt;{}&gt;(())&gt;][&lt;&lt;{}{}&gt;(&lt;&gt;())&gt;{&lt;{}{}&gt;&lt;{}&lt;&gt;&gt;}]}]&lt;&lt;({{()
+        ///{(((&lt;{{{&lt;&lt;{({{()[]){()[]}}({{}}[&lt;&gt;[]])){[{()&lt;&gt;}&lt;()()&gt;]}}&gt;{[[{&lt;[]{}&gt;{{}()}}&lt;&lt;()[]&gt;[{}[]]&gt;]{[{(){ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day10 {
+            get {
+                return ResourceManager.GetString("Day10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [({(&lt;(())[]&gt;[[{[]{&lt;()&lt;&gt;&gt;
+        ///[(()[&lt;&gt;])]({[&lt;{&lt;&lt;[]&gt;&gt;(
+        ///{([(&lt;{}[&lt;&gt;[]}&gt;{[]{[(&lt;()&gt;
+        ///(((({&lt;&gt;}&lt;{&lt;{&lt;&gt;}{[]{[]{}
+        ///[[&lt;[([]))&lt;([[{}[[()]]]
+        ///[{[{({}]{}}([{[{{{}}([]
+        ///{&lt;[[]]&gt;}&lt;{[{[{[]{()[[[]
+        ///[&lt;(&lt;(&lt;(&lt;{}))&gt;&lt;([]([]()
+        ///&lt;{([([[(&lt;&gt;()){}]&gt;(&lt;&lt;{{
+        ///&lt;{([{{}}[&lt;[[[&lt;&gt;{}]]]&gt;[]].
+        /// </summary>
+        internal static string Day10_Debug {
+            get {
+                return ResourceManager.GetString("Day10_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to forward 5
         ///forward 2
         ///forward 9
