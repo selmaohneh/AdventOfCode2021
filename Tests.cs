@@ -180,5 +180,29 @@ namespace AdventOfCode2021
             string result = sut.Part2();
             Assert.AreEqual("290", result);
         }
+
+        [TestMethod]
+        public void Day12_Part1()
+        {
+            var sut = new Day12();
+            string result = sut.Part1();
+            Assert.AreEqual("1732", result);
+        }
+
+        [TestMethod]
+        public void Day13_Part1()
+        {
+            var sut = new Day13();
+            string result = sut.Part1();
+            Assert.AreEqual("671", result);
+        }
+
+        [TestMethod]
+        public void Day13_Part2()
+        {
+            var sut = new Day13();
+            string result = sut.Part2();
+            Assert.AreEqual("671", result);
+        }
     }
 }

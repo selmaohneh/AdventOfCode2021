@@ -239,6 +239,115 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to start-A
+        ///start-b
+        ///A-c
+        ///A-b
+        ///b-d
+        ///A-end
+        ///b-end.
+        /// </summary>
+        internal static string Day12_Debug {
+            get {
+                return ResourceManager.GetString("Day12_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 323,305
+        ///512,845
+        ///780,175
+        ///308,50
+        ///266,604
+        ///152,425
+        ///199,618
+        ///214,572
+        ///977,596
+        ///1113,756
+        ///1019,316
+        ///972,322
+        ///1181,138
+        ///785,756
+        ///504,378
+        ///597,537
+        ///1068,485
+        ///738,108
+        ///437,359
+        ///1163,567
+        ///585,549
+        ///490,527
+        ///616,5
+        ///258,605
+        ///1265,473
+        ///728,421
+        ///659,626
+        ///162,781
+        ///725,549
+        ///165,23
+        ///1148,554
+        ///169,710
+        ///388,290
+        ///989,746
+        ///619,361
+        ///951,850
+        ///1136,770
+        ///592,284
+        ///298,430
+        ///441,408
+        ///1014,534
+        ///147,77
+        ///822,429
+        ///1210,162
+        ///109,647
+        ///65,605
+        ///319,595
+        ///535,315
+        ///691,420
+        ///266,290
+        ///127,824
+        ///435,779
+        ///306,161
+        ///248,653
+        ///23,478
+        ///751,276
+        ///1295, [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day13 {
+            get {
+                return ResourceManager.GetString("Day13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6,10
+        ///0,14
+        ///9,10
+        ///0,3
+        ///10,4
+        ///4,11
+        ///6,0
+        ///6,12
+        ///4,1
+        ///0,13
+        ///10,12
+        ///3,4
+        ///3,0
+        ///8,4
+        ///1,10
+        ///2,14
+        ///8,10
+        ///9,0
+        ///
+        ///fold along y=7
+        ///fold along x=5.
+        /// </summary>
+        internal static string Day13_Debug {
+            get {
+                return ResourceManager.GetString("Day13_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to forward 5
         ///forward 2
         ///forward 9
