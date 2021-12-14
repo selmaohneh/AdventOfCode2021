@@ -10,58 +10,14 @@ namespace AdventOfCode2021
         {
             (List<FoldInstruction> foldInstructions, List<Cell> dots) = GetDotsAndFoldInstructions();
 
-            var dotsAfterFold = new List<Cell>();
+            dots = Fold(foldInstructions.Take(1).ToList(), dots);
 
-            foreach (FoldInstruction foldInstruction in foldInstructions)
-            {
-                if (foldInstruction.Coordinate == "x")
-                {
-                    dotsAfterFold.AddRange(dots.Where(x => x.X < foldInstruction.Number));
-
-                    var dotsRightOfLine = dots.Where(x => x.X > foldInstruction.Number);
-
-                    foreach (Cell cell in dotsRightOfLine)
-                    {
-                        int distanceToLine = cell.X - foldInstruction.Number;
-                        int newX = cell.X - 2 * distanceToLine;
-
-                        if (newX >= 0)
-                        {
-                            cell.X = newX;
-                            dotsAfterFold.Add(cell);
-                        }
-                    }
-                }
-
-                if (foldInstruction.Coordinate == "y")
-                {
-                    dotsAfterFold.AddRange(dots.Where(x => x.Y < foldInstruction.Number));
-
-                    var dotsBelowLine = dots.Where(x => x.Y > foldInstruction.Number);
-
-                    foreach (Cell cell in dotsBelowLine)
-                    {
-                        int distanceToLine = cell.Y - foldInstruction.Number;
-                        int newY = cell.Y - 2 * distanceToLine;
-
-                        if (newY >= 0)
-                        {
-                            cell.Y = newY;
-                            dotsAfterFold.Add(cell);
-                        }
-                    }
-                }
-
-                // only the first fold
-                break;
-            }
-
-            int count = dotsAfterFold.GroupBy(p => new
-                                      {
-                                          p.X,
-                                          p.Y
-                                      })
-                                     .Count();
+            int count = dots.GroupBy(p => new
+                             {
+                                 p.X,
+                                 p.Y
+                             })
+                            .Count();
 
             return count.ToString();
         }
@@ -103,11 +59,38 @@ namespace AdventOfCode2021
         {
             (List<FoldInstruction> foldInstructions, List<Cell> dots) = GetDotsAndFoldInstructions();
 
-            List<Cell> dotsAfterFold;
+            dots = Fold(foldInstructions, dots);
 
+            int maxX = dots.Max(x => x.X);
+            int maxY = dots.Max(x => x.Y);
+
+            string plot = String.Empty;
+
+            for (int y = 0; y <= maxY; y++)
+            {
+                for (int x = 0; x <= maxX; x++)
+                {
+                    if (dots.Any(d => d.X == x && d.Y == y))
+                    {
+                        plot += "#";
+                    }
+                    else
+                    {
+                        plot += ".";
+                    }
+                }
+
+                plot += Environment.NewLine;
+            }
+
+            return plot;
+        }
+
+        private List<Cell> Fold(List<FoldInstruction> foldInstructions, List<Cell> dots)
+        {
             foreach (FoldInstruction foldInstruction in foldInstructions)
             {
-                dotsAfterFold = new List<Cell>();
+                var dotsAfterFold = new List<Cell>();
 
                 if (foldInstruction.Coordinate == "x")
                 {
@@ -150,29 +133,7 @@ namespace AdventOfCode2021
                 dots = dotsAfterFold;
             }
 
-            int maxX = dots.Max(x => x.X);
-            int maxY = dots.Max(x => x.Y);
-
-            string plot = String.Empty;
-
-            for (int y = 0; y <= maxY; y++)
-            {
-                for (int x = 0; x <= maxX; x++)
-                {
-                    if (dots.Any(d => d.X == x && d.Y == y))
-                    {
-                        plot += "#";
-                    }
-                    else
-                    {
-                        plot += ".";
-                    }
-                }
-
-                plot += Environment.NewLine;
-            }
-
-            return plot;
+            return dots;
         }
 
         private class Cell

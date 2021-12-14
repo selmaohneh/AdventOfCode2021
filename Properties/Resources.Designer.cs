@@ -348,6 +348,97 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FSHBKOOPCFSFKONFNFBB
+        ///
+        ///FO -&gt; K
+        ///FF -&gt; H
+        ///SN -&gt; C
+        ///CC -&gt; S
+        ///BB -&gt; V
+        ///FK -&gt; H
+        ///PC -&gt; P
+        ///PH -&gt; N
+        ///OB -&gt; O
+        ///PV -&gt; C
+        ///BH -&gt; B
+        ///HO -&gt; C
+        ///VF -&gt; H
+        ///HB -&gt; O
+        ///VO -&gt; N
+        ///HK -&gt; N
+        ///OF -&gt; V
+        ///PF -&gt; C
+        ///KS -&gt; H
+        ///KV -&gt; F
+        ///PO -&gt; B
+        ///BF -&gt; P
+        ///OO -&gt; B
+        ///PS -&gt; S
+        ///KC -&gt; P
+        ///BV -&gt; K
+        ///OC -&gt; B
+        ///SH -&gt; C
+        ///SF -&gt; P
+        ///NH -&gt; C
+        ///BS -&gt; C
+        ///VH -&gt; F
+        ///CH -&gt; S
+        ///BC -&gt; B
+        ///ON -&gt; K
+        ///FH -&gt; O
+        ///HN -&gt; O
+        ///HS -&gt; C
+        ///KK -&gt; V
+        ///OK -&gt; K
+        ///VC -&gt; H
+        ///HV -&gt; F
+        ///FS -&gt; H
+        ///OV -&gt; P
+        ///HF -&gt; F
+        ///FB -&gt; O
+        ///CK -&gt; O
+        ///HP -&gt; C
+        ///NN -&gt; V
+        ///PP -&gt; F
+        ///FC -&gt; O
+        ///SK -&gt; N
+        ///FN -&gt; K
+        ///HH -&gt; F
+        ///BP [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day14 {
+            get {
+                return ResourceManager.GetString("Day14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NNCB
+        ///
+        ///CH -&gt; B
+        ///HH -&gt; N
+        ///CB -&gt; H
+        ///NH -&gt; C
+        ///HB -&gt; C
+        ///HC -&gt; B
+        ///HN -&gt; C
+        ///NN -&gt; C
+        ///BH -&gt; H
+        ///NC -&gt; B
+        ///NB -&gt; B
+        ///BN -&gt; B
+        ///BB -&gt; N
+        ///BC -&gt; B
+        ///CC -&gt; N
+        ///CN -&gt; C.
+        /// </summary>
+        internal static string Day14_Debug {
+            get {
+                return ResourceManager.GetString("Day14_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to forward 5
         ///forward 2
         ///forward 9
