@@ -2259,6 +2259,32 @@
 4846848554
 5283751526</value>
   </data>
+  <data name="Day12" xml:space="preserve">
+    <value>yb-start
+de-vd
+rj-yb
+rj-VP
+OC-de
+MU-de
+end-DN
+vd-end
+WK-vd
+rj-de
+DN-vd
+start-VP
+DN-yb
+vd-MU
+DN-rj
+de-VP
+yb-OC
+start-rj
+oa-MU
+yb-de
+oa-VP
+jv-MU
+yb-MU
+end-OC</value>
+  </data>
   <data name="Day12_Debug" xml:space="preserve">
     <value>start-A
 start-b

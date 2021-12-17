@@ -239,6 +239,38 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to yb-start
+        ///de-vd
+        ///rj-yb
+        ///rj-VP
+        ///OC-de
+        ///MU-de
+        ///end-DN
+        ///vd-end
+        ///WK-vd
+        ///rj-de
+        ///DN-vd
+        ///start-VP
+        ///DN-yb
+        ///vd-MU
+        ///DN-rj
+        ///de-VP
+        ///yb-OC
+        ///start-rj
+        ///oa-MU
+        ///yb-de
+        ///oa-VP
+        ///jv-MU
+        ///yb-MU
+        ///end-OC.
+        /// </summary>
+        internal static string Day12 {
+            get {
+                return ResourceManager.GetString("Day12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to start-A
         ///start-b
         ///A-c
