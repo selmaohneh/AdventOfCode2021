@@ -1,14 +1,13 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day4 : IAdeventOfCodeDay
+    internal class Day04
     {
-        public string Input { get; } = Resources.Day4;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            string[] splitInput = Input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitInput = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             List<int> randomNumbers = ExtractRandomNumbers(splitInput);
 
             List<Board> boards = BuildsBoards(splitInput);
@@ -22,7 +21,7 @@ namespace AdventOfCode2021
 
                     if (won)
                     {
-                        return (board.GetSumOfUnmarkedNumbers() * randomNumber).ToString();
+                        return (board.GetSumOfUnmarkedNumbers() * randomNumber);
                     }
                 }
             }
@@ -30,9 +29,9 @@ namespace AdventOfCode2021
             throw new Exception();
         }
 
-        public string Part2()
+        public int Part2(string input)
         {
-            string[] splitInput = Input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            string[] splitInput = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             List<int> randomNumbers = ExtractRandomNumbers(splitInput);
 
             List<Board> boards = BuildsBoards(splitInput);
@@ -46,7 +45,7 @@ namespace AdventOfCode2021
 
                     if (boards.All(x => x.HasBoardWon()))
                     {
-                        return (board.GetSumOfUnmarkedNumbers() * randomNumber).ToString();
+                        return (board.GetSumOfUnmarkedNumbers() * randomNumber);
                     }
                 }
             }
@@ -180,6 +179,42 @@ namespace AdventOfCode2021
             {
                 return Cells.Where(x => !x.Marked).Select(x => x.Number).Sum();
             }
+        }
+    }
+
+    [TestClass]
+    public class Day04Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day04();
+            int result = sut.Part1(Resources.Day04_Debug);
+            Assert.AreEqual(4512, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day04();
+            int result = sut.Part1(Resources.Day04);
+            Assert.AreEqual(23177, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day04();
+            int result = sut.Part2(Resources.Day04_Debug);
+            Assert.AreEqual(1924, result);
+        }
+
+        [TestMethod]
+        public void Day4_Part2()
+        {
+            var sut = new Day04();
+            int result = sut.Part2(Resources.Day04);
+            Assert.AreEqual(6804, result);
         }
     }
 }
