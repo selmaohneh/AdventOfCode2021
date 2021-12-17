@@ -8,28 +8,11 @@ namespace AdventOfCode2021
 
         public string Part1()
         {
-            string[] lines = Input.Split(Environment.NewLine);
-
-            var nodes = new Dictionary<string, Node>();
-            var edges = new HashSet<Edge>();
-
-            foreach (string line in lines)
-            {
-                string[] splitLine = line.Split("-");
-
-                var nodeA = new Node(splitLine[0]);
-                nodes.TryAdd(nodeA.Name, nodeA);
-
-                var nodeB = new Node(splitLine[1]);
-                nodes.TryAdd(nodeB.Name, nodeB);
-
-                var edge = new Edge(nodeA, nodeB);
-                edges.Add(edge);
-            }
+            Dictionary<Node, HashSet<Node>> graph = CreateGraph();
 
             ExplorePath(new Node("start"),
                         new Node("end"),
-                        edges,
+                        graph,
                         new HashSet<Node>());
 
             return _count.ToString();
@@ -37,37 +20,63 @@ namespace AdventOfCode2021
 
         public string Part2()
         {
-            string[] lines = Input.Split(Environment.NewLine);
-
-            var nodes = new Dictionary<string, Node>();
-            var edges = new HashSet<Edge>();
-
-            foreach (string line in lines)
-            {
-                string[] splitLine = line.Split("-");
-
-                var nodeA = new Node(splitLine[0]);
-                nodes.TryAdd(nodeA.Name, nodeA);
-
-                var nodeB = new Node(splitLine[1]);
-                nodes.TryAdd(nodeB.Name, nodeB);
-
-                var edge = new Edge(nodeA, nodeB);
-                edges.Add(edge);
-            }
+            Dictionary<Node, HashSet<Node>> graph = CreateGraph();
 
             ExplorePath2(new Node("start"),
                          new Node("end"),
-                         edges,
+                         graph,
                          new HashSet<Node>(),
                          new HashSet<Node>());
 
             return _count.ToString();
         }
 
-        private int _count = 0;
+        private Dictionary<Node, HashSet<Node>> CreateGraph()
+        {
+            string[] lines = Input.Split(Environment.NewLine);
 
-        private void ExplorePath(Node currentNode, Node targetNode, HashSet<Edge> edges, HashSet<Node> visitedNodes)
+            var graph = new Dictionary<Node, HashSet<Node>>();
+
+            foreach (string line in lines)
+            {
+                string[] splitLine = line.Split("-");
+
+                var nodeA = new Node(splitLine[0]);
+                var nodeB = new Node(splitLine[1]);
+
+                if (graph.ContainsKey(nodeA))
+                {
+                    graph[nodeA].Add(nodeB);
+                }
+                else
+                {
+                    graph.Add(nodeA,
+                              new HashSet<Node>
+                              {
+                                  nodeB
+                              });
+                }
+
+                if (graph.ContainsKey(nodeB))
+                {
+                    graph[nodeB].Add(nodeA);
+                }
+                else
+                {
+                    graph.Add(nodeB,
+                              new HashSet<Node>
+                              {
+                                  nodeA
+                              });
+                }
+            }
+
+            return graph;
+        }
+
+        private int _count;
+
+        private void ExplorePath(Node currentNode, Node targetNode, Dictionary<Node, HashSet<Node>> graph, HashSet<Node> visitedNodes)
         {
             if (Equals(currentNode, targetNode))
             {
@@ -78,21 +87,10 @@ namespace AdventOfCode2021
 
             visitedNodes.Add(currentNode);
 
-            var matchingEdges = edges.Where(x => Equals(x.A, currentNode) || Equals(x.B, currentNode));
+            var neighbors = graph[currentNode];
 
-            foreach (Edge edge in matchingEdges)
+            foreach (Node neighbor in neighbors)
             {
-                Node neighbor;
-
-                if (Equals(edge.A, currentNode))
-                {
-                    neighbor = edge.B;
-                }
-                else
-                {
-                    neighbor = edge.A;
-                }
-
                 if (neighbor.IsBig || !visitedNodes.Contains(neighbor))
                 {
                     if (neighbor.Name == "start")
@@ -102,13 +100,17 @@ namespace AdventOfCode2021
 
                     ExplorePath(neighbor,
                                 targetNode,
-                                edges,
+                                graph,
                                 new HashSet<Node>(visitedNodes));
                 }
             }
         }
 
-        private void ExplorePath2(Node currentNode, Node targetNode, HashSet<Edge> edges, HashSet<Node> visitedNodes, HashSet<Node> twiceVisistedSmallNodes)
+        private void ExplorePath2(Node currentNode,
+                                  Node targetNode,
+                                  Dictionary<Node, HashSet<Node>> graph,
+                                  HashSet<Node> visitedNodes,
+                                  HashSet<Node> twiceVisistedSmallNodes)
         {
             if (Equals(currentNode, targetNode))
             {
@@ -124,21 +126,10 @@ namespace AdventOfCode2021
                 twiceVisistedSmallNodes.Add(currentNode);
             }
 
-            var matchingEdges = edges.Where(x => Equals(x.A, currentNode) || Equals(x.B, currentNode));
+            var neighbors = graph[currentNode];
 
-            foreach (Edge edge in matchingEdges)
+            foreach (Node neighbor in neighbors)
             {
-                Node neighbor;
-
-                if (Equals(edge.A, currentNode))
-                {
-                    neighbor = edge.B;
-                }
-                else
-                {
-                    neighbor = edge.A;
-                }
-
                 if (neighbor.IsBig || !twiceVisistedSmallNodes.Contains(neighbor) && twiceVisistedSmallNodes.Count <= 1)
                 {
                     if (neighbor.Name == "start")
@@ -148,7 +139,7 @@ namespace AdventOfCode2021
 
                     ExplorePath2(neighbor,
                                  targetNode,
-                                 edges,
+                                 graph,
                                  new HashSet<Node>(visitedNodes),
                                  new HashSet<Node>(twiceVisistedSmallNodes));
                 }
@@ -169,23 +160,6 @@ namespace AdventOfCode2021
 
             public string Name { get; }
             public bool IsBig => Name.All(Char.IsUpper);
-        }
-
-        private struct Edge
-        {
-            public Edge(Node a, Node b)
-            {
-                A = a;
-                B = b;
-            }
-
-            public Node A { get; }
-            public Node B { get; }
-
-            public override string ToString()
-            {
-                return $"{A} --> {B}";
-            }
         }
     }
 }
