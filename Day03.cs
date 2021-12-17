@@ -1,14 +1,13 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day3 : IAdeventOfCodeDay
+    internal class Day03
     {
-        public string Input { get; } = Resources.Day3;
-
-        public string Part1()
+        public long Part1(string input)
         {
-            var diagnostics = GetDiagnosticsFromInput(Input);
+            var diagnostics = GetDiagnosticsFromInput(input);
 
             string mostCommonBits = String.Empty;
             string leastCommonBits = String.Empty;
@@ -36,17 +35,17 @@ namespace AdventOfCode2021
 
             long powerConsumption = gammeRate * epsilonRate;
 
-            return powerConsumption.ToString();
+            return powerConsumption;
         }
 
-        public string Part2()
+        public int Part2(string input)
         {
-            var diagnostics = GetDiagnosticsFromInput(Input);
+            var diagnostics = GetDiagnosticsFromInput(input);
 
             int oxygenGeneratorRating = GetOxygenGeneratorRating(diagnostics);
             int co2ScrubberRating = GetCo2ScrubberRating(diagnostics);
 
-            return (oxygenGeneratorRating * co2ScrubberRating).ToString();
+            return (oxygenGeneratorRating * co2ScrubberRating);
         }
 
         public enum EMostCommonBit
@@ -139,6 +138,42 @@ namespace AdventOfCode2021
             string[] diagnostics = input.Split(Environment.NewLine);
 
             return diagnostics.ToList();
+        }
+    }
+
+    [TestClass]
+    public class Day03Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day03();
+            long result = sut.Part1(Resources.Day03_Debug);
+            Assert.AreEqual(198, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day03();
+            long result = sut.Part1(Resources.Day03);
+            Assert.AreEqual(841526, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day03();
+            int result = sut.Part2(Resources.Day03_Debug);
+            Assert.AreEqual(230, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day03();
+            int result = sut.Part2(Resources.Day03);
+            Assert.AreEqual(4790390, result);
         }
     }
 }
