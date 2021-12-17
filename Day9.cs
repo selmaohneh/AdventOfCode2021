@@ -8,29 +8,29 @@ namespace AdventOfCode2021
 
         public string Part1()
         {
-            List<Point> points = GetPoints();
+            IDictionary<Point, int> map = CreateMap();
 
-            List<Point> lowPoints = FindLowPoints(points);
+            HashSet<Point> lowPoints = FindLowPoints(map);
 
-            var riskLevels = lowPoints.Select(x => x.Height + 1);
+            var riskLevels = lowPoints.Select(x => map[x] + 1);
 
             return riskLevels.Sum().ToString();
         }
 
         public string Part2()
         {
-            List<Point> points = GetPoints();
+            IDictionary<Point, int> map = CreateMap();
 
-            List<Point> lowPoints = FindLowPoints(points);
+            HashSet<Point> lowPoints = FindLowPoints(map);
 
-            List<int> basinSizes = GetBasinSizes(lowPoints, points);
+            HashSet<int> basinSizes = GetBasinSizes(lowPoints, map);
 
             int result = GetProductOfBiggestThreeBasins(basinSizes);
 
             return result.ToString();
         }
 
-        private int GetProductOfBiggestThreeBasins(List<int> basinSizes)
+        private int GetProductOfBiggestThreeBasins(HashSet<int> basinSizes)
         {
             int result = 1;
             var threeBiggestBasins = basinSizes.OrderByDescending(x => x).Take(3);
@@ -43,13 +43,13 @@ namespace AdventOfCode2021
             return result;
         }
 
-        private List<int> GetBasinSizes(List<Point> lowPoints, List<Point> points)
+        private HashSet<int> GetBasinSizes(HashSet<Point> lowPoints, IDictionary<Point, int> map)
         {
-            var basinSizes = new List<int>();
+            var basinSizes = new HashSet<int>();
 
             foreach (Point lowPoint in lowPoints)
             {
-                var basinPoints = new List<Point>();
+                var basinPoints = new HashSet<Point>();
 
                 var queue = new Queue<Point>();
                 queue.Enqueue(lowPoint);
@@ -63,9 +63,9 @@ namespace AdventOfCode2021
                         basinPoints.Add(currentPoint);
                     }
 
-                    var adjacents = GetAdjacents(points, currentPoint).ToList();
+                    var adjacents = currentPoint.GetAdjacents(map);
 
-                    var currentBasinPoints = adjacents.Where(x => x.Height > currentPoint.Height && x.Height != 9).ToList();
+                    var currentBasinPoints = adjacents.Where(x => map[x] > map[currentPoint] && map[x] != 9).ToList();
 
                     foreach (Point currentBasinPoint in currentBasinPoints)
                     {
@@ -79,9 +79,9 @@ namespace AdventOfCode2021
             return basinSizes;
         }
 
-        private List<Point> GetPoints()
+        private IDictionary<Point, int> CreateMap()
         {
-            var points = new List<Point>();
+            var map = new Dictionary<Point, int>();
             string[] lines = Input.Split(Environment.NewLine);
 
             for (int y = 0; y < lines.Length; y++)
@@ -92,81 +92,67 @@ namespace AdventOfCode2021
                 for (int x = 0; x < heightsOfLine.Count; x++)
                 {
                     int height = heightsOfLine[x];
-                    points.Add(new Point(height, x, y));
+                    map.Add(new Point(x, y), height);
                 }
             }
 
-            return points;
+            return map;
         }
 
-        private List<Point> FindLowPoints(List<Point> points)
+        private HashSet<Point> FindLowPoints(IDictionary<Point, int> map)
         {
-            var lowPoints = new List<Point>();
+            var lowPoints = new HashSet<Point>();
 
-            foreach (Point point in points)
+            foreach (KeyValuePair<Point, int> point in map)
             {
-                var adjacents = GetAdjacents(points, point);
+                var adjacents = point.Key.GetAdjacents(map);
 
-                if (adjacents.All(adjacent => adjacent.Height > point.Height))
+                if (adjacents.All(adjacent => map[adjacent] > map[point.Key]))
                 {
-                    lowPoints.Add(point);
+                    lowPoints.Add(point.Key);
                 }
             }
 
             return lowPoints;
         }
 
-        private IEnumerable<Point> GetAdjacents(List<Point> points, Point point)
+        public struct Point
         {
-            var adjacents = new List<Point>();
-
-            Point? topPoint = points.SingleOrDefault(x => x.X == point.X && x.Y == point.Y - 1);
-
-            if (topPoint != null)
+            public Point(int x, int y)
             {
-                adjacents.Add(topPoint);
-            }
-
-            Point? botPoint = points.SingleOrDefault(x => x.X == point.X && x.Y == point.Y + 1);
-
-            if (botPoint != null)
-            {
-                adjacents.Add(botPoint);
-            }
-
-            Point? leftPoint = points.SingleOrDefault(x => x.X == point.X - 1 && x.Y == point.Y);
-
-            if (leftPoint != null)
-            {
-                adjacents.Add(leftPoint);
-            }
-
-            Point? rightPoint = points.SingleOrDefault(x => x.X == point.X + 1 && x.Y == point.Y);
-
-            if (rightPoint != null)
-            {
-                adjacents.Add(rightPoint);
-            }
-
-            return adjacents;
-        }
-
-        public class Point
-        {
-            public Point(int height, int x, int y)
-            {
-                Height = height;
                 X = x;
                 Y = y;
             }
 
-            public int Height { get; set; }
-            public int X { get; set; }
-            public int Y { get; set; }
+            public int X { get; }
+            public int Y { get; }
 
-            public override string ToString()
+            public HashSet<Point> GetAdjacents(IDictionary<Point, int> map)
             {
-                return $"{X},{Y}: {Height}";
+                var topPoint = new Point(X, Y - 1);
+                var botPoint = new Point(X, Y + 1);
+                var leftPoint = new Point(X - 1, Y);
+                var rightPoint = new Point(X + 1, Y);
+
+                var adjacentCandidates = new HashSet<Point>
+                {
+                    topPoint,
+                    botPoint,
+                    leftPoint,
+                    rightPoint
+                };
+
+                var adjacents = new HashSet<Point>();
+
+                foreach (Point adjacentCandidate in adjacentCandidates)
+                {
+                    if (map.ContainsKey(adjacentCandidate))
+                    {
+                        adjacents.Add(adjacentCandidate);
+                    }
+                }
+
+                return adjacents;
             }
         }
     }
