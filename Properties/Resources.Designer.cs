@@ -439,6 +439,38 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 7715611621811483411121929153345417926121654738244558184333228256741518593939121351941172244538819793
+        ///5978192582116933121967117233221363821218169348147142177193168221219699236451313112198933914323123492
+        ///3523162115513315258921111444182316618172925755923799136271191151813516522171176112647162541858173363
+        ///7931931461145231897547234134741682994126523123999252325119362919742719127391146114344331291116971777
+        ///3912157144212332298711374454411326743116179131395281613188171189221945922126933817119198199326455346
+        ///22 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day15 {
+            get {
+                return ResourceManager.GetString("Day15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1163751742
+        ///1381373672
+        ///2136511328
+        ///3694931569
+        ///7463417111
+        ///1319128137
+        ///1359912421
+        ///3125421639
+        ///1293138521
+        ///2311944581.
+        /// </summary>
+        internal static string Day15_Debug {
+            get {
+                return ResourceManager.GetString("Day15_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to forward 5
         ///forward 2
         ///forward 9
