@@ -190,6 +190,83 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to forward 5
+        ///forward 2
+        ///forward 9
+        ///down 2
+        ///forward 9
+        ///forward 3
+        ///forward 2
+        ///down 6
+        ///forward 3
+        ///forward 3
+        ///down 3
+        ///down 3
+        ///forward 8
+        ///down 5
+        ///forward 7
+        ///forward 9
+        ///forward 9
+        ///forward 6
+        ///forward 9
+        ///forward 3
+        ///forward 3
+        ///forward 1
+        ///forward 7
+        ///down 6
+        ///forward 7
+        ///forward 4
+        ///down 3
+        ///down 1
+        ///forward 4
+        ///down 7
+        ///down 2
+        ///down 8
+        ///forward 9
+        ///down 5
+        ///down 2
+        ///forward 6
+        ///up 4
+        ///down 3
+        ///down 1
+        ///down 6
+        ///down 7
+        ///forward 6
+        ///up 2
+        ///forward 2
+        ///down 9
+        ///down 3
+        ///forward 7
+        ///up 3
+        ///up 7
+        ///forward 8
+        ///forward 7
+        ///down 4
+        ///up 8
+        ///up 1
+        ///forward  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day02 {
+            get {
+                return ResourceManager.GetString("Day02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to forward 5
+        ///down 5
+        ///forward 8
+        ///up 3
+        ///down 8
+        ///forward 2.
+        /// </summary>
+        internal static string Day02_Debug {
+            get {
+                return ResourceManager.GetString("Day02_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [&lt;&lt;{[{([([({&lt;{&lt;&gt;{}}&gt;[[[]{}][[]&lt;&gt;])}{[(())][[&lt;&gt;{}]{[]{}}]})](([{&lt;&lt;&gt;{}&gt;[()&lt;&gt;]}&lt;&lt;&lt;&gt;()&gt;{{}&lt;&gt;}&gt;]{[{{}()}[(){}]]})
         ///[({[[(&lt;{[&lt;[&lt;{({}[])(&lt;&gt;{})}(([]&lt;&gt;)[[]()])&gt;{[&lt;{}()&gt;&lt;{}{}&gt;][&lt;[]()&gt;({}())]}]&lt;(&lt;(()&lt;&gt;){{}{}}&gt;({()()}(()[])))&gt;&gt;[([
         ///(&lt;([[&lt;(&lt;&lt;{((&lt;&lt;&lt;&gt;{}&gt;{{}{}}&gt;({()&lt;&gt;}{()&lt;&gt;}))&lt;[(&lt;&gt;&lt;&gt;)&lt;&lt;&gt;()&gt;]{((){}){[]&lt;&gt;}}&gt;)}({&lt;[(()[]){()[]}]{((
@@ -517,69 +594,6 @@ namespace AdventOfCode2021.Properties {
         internal static string Day15_Debug {
             get {
                 return ResourceManager.GetString("Day15_Debug", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to forward 5
-        ///forward 2
-        ///forward 9
-        ///down 2
-        ///forward 9
-        ///forward 3
-        ///forward 2
-        ///down 6
-        ///forward 3
-        ///forward 3
-        ///down 3
-        ///down 3
-        ///forward 8
-        ///down 5
-        ///forward 7
-        ///forward 9
-        ///forward 9
-        ///forward 6
-        ///forward 9
-        ///forward 3
-        ///forward 3
-        ///forward 1
-        ///forward 7
-        ///down 6
-        ///forward 7
-        ///forward 4
-        ///down 3
-        ///down 1
-        ///forward 4
-        ///down 7
-        ///down 2
-        ///down 8
-        ///forward 9
-        ///down 5
-        ///down 2
-        ///forward 6
-        ///up 4
-        ///down 3
-        ///down 1
-        ///down 6
-        ///down 7
-        ///forward 6
-        ///up 2
-        ///forward 2
-        ///down 9
-        ///down 3
-        ///forward 7
-        ///up 3
-        ///up 7
-        ///forward 8
-        ///forward 7
-        ///down 4
-        ///up 8
-        ///up 1
-        ///forward  [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Day2 {
-            get {
-                return ResourceManager.GetString("Day2", resourceCulture);
             }
         }
         
