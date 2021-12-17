@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AdventOfCode2021.Properties;
+﻿using AdventOfCode2021.Properties;
 
 namespace AdventOfCode2021
 {
@@ -43,7 +37,32 @@ namespace AdventOfCode2021
 
         public string Part2()
         {
-            throw new NotImplementedException();
+            string[] lines = Input.Split(Environment.NewLine);
+
+            var nodes = new Dictionary<string, Node>();
+            var edges = new HashSet<Edge>();
+
+            foreach (string line in lines)
+            {
+                string[] splitLine = line.Split("-");
+
+                var nodeA = new Node(splitLine[0]);
+                nodes.TryAdd(nodeA.Name, nodeA);
+
+                var nodeB = new Node(splitLine[1]);
+                nodes.TryAdd(nodeB.Name, nodeB);
+
+                var edge = new Edge(nodeA, nodeB);
+                edges.Add(edge);
+            }
+
+            ExplorePath2(new Node("start"),
+                         new Node("end"),
+                         edges,
+                         new HashSet<Node>(),
+                         new HashSet<Node>());
+
+            return _count.ToString();
         }
 
         private int _count = 0;
@@ -76,10 +95,62 @@ namespace AdventOfCode2021
 
                 if (neighbor.IsBig || !visitedNodes.Contains(neighbor))
                 {
+                    if (neighbor.Name == "start")
+                    {
+                        continue;
+                    }
+
                     ExplorePath(neighbor,
                                 targetNode,
                                 edges,
                                 new HashSet<Node>(visitedNodes));
+                }
+            }
+        }
+
+        private void ExplorePath2(Node currentNode, Node targetNode, HashSet<Edge> edges, HashSet<Node> visitedNodes, HashSet<Node> twiceVisistedSmallNodes)
+        {
+            if (Equals(currentNode, targetNode))
+            {
+                _count++;
+
+                return;
+            }
+
+            bool added = visitedNodes.Add(currentNode);
+
+            if (!added && !currentNode.IsBig)
+            {
+                twiceVisistedSmallNodes.Add(currentNode);
+            }
+
+            var matchingEdges = edges.Where(x => Equals(x.A, currentNode) || Equals(x.B, currentNode));
+
+            foreach (Edge edge in matchingEdges)
+            {
+                Node neighbor;
+
+                if (Equals(edge.A, currentNode))
+                {
+                    neighbor = edge.B;
+                }
+                else
+                {
+                    neighbor = edge.A;
+                }
+
+                if (neighbor.IsBig || !twiceVisistedSmallNodes.Contains(neighbor) && twiceVisistedSmallNodes.Count <= 1)
+                {
+                    if (neighbor.Name == "start")
+                    {
+                        continue;
+                    }
+
+                    ExplorePath2(neighbor,
+                                 targetNode,
+                                 edges,
+                                 new HashSet<Node>(visitedNodes),
+                                 new HashSet<Node>(twiceVisistedSmallNodes));
                 }
             }
         }
