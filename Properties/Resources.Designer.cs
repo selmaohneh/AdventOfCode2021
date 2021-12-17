@@ -165,9 +165,27 @@ namespace AdventOfCode2021.Properties {
         ///284
         ///28 [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Day1 {
+        internal static string Day01 {
             get {
-                return ResourceManager.GetString("Day1", resourceCulture);
+                return ResourceManager.GetString("Day01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 199
+        ///200
+        ///208
+        ///210
+        ///200
+        ///207
+        ///240
+        ///269
+        ///260
+        ///263.
+        /// </summary>
+        internal static string Day01_Debug {
+            get {
+                return ResourceManager.GetString("Day01_Debug", resourceCulture);
             }
         }
         

@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Day1" xml:space="preserve">
+  <data name="Day01" xml:space="preserve">
     <value>190
 168
 166
@@ -2118,6 +2118,18 @@
 4447
 4459
 4482</value>
+  </data>
+  <data name="Day01_Debug" xml:space="preserve">
+    <value>199
+200
+208
+210
+200
+207
+240
+269
+260
+263</value>
   </data>
   <data name="Day10" xml:space="preserve">
     <value>[&lt;&lt;{[{([([({&lt;{&lt;&gt;{}}&gt;[[[]{}][[]&lt;&gt;])}{[(())][[&lt;&gt;{}]{[]{}}]})](([{&lt;&lt;&gt;{}&gt;[()&lt;&gt;]}&lt;&lt;&lt;&gt;()&gt;{{}&lt;&gt;}&gt;]{[{{}()}[(){}]]})
