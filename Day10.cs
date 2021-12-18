@@ -1,17 +1,16 @@
-﻿using System.Globalization;
-using AdventOfCode2021.Properties;
+﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day10 : IAdeventOfCodeDay
+    internal class Day10
     {
         private Stack<char> _openingBrackets;
         private int _points;
-        public string Input => Resources.Day10;
 
-        public string Part1()
+        public int Part1(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             _points = 0;
 
@@ -25,7 +24,7 @@ namespace AdventOfCode2021
                 }
             }
 
-            return _points.ToString();
+            return _points;
         }
 
         private bool PushIfOpeningBracket(char currentChar, Stack<char> openingBrackets)
@@ -75,9 +74,9 @@ namespace AdventOfCode2021
             }
         }
 
-        public string Part2()
+        public long Part2(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             var pointsPerLine = new List<double>();
 
@@ -124,7 +123,7 @@ namespace AdventOfCode2021
             int middleIndex = pointsPerLine.Count / 2;
             var orderedPoints = pointsPerLine.OrderByDescending(x => x);
 
-            return orderedPoints.ElementAt(middleIndex).ToString(CultureInfo.InvariantCulture);
+            return (long)orderedPoints.ElementAt(middleIndex);
         }
 
         private (bool valid, char lastChar) BuildValidStack(string line)
@@ -160,6 +159,42 @@ namespace AdventOfCode2021
 
             // yak - of course we should extract this into an own class, but this is Aoc --> ain't no body got time for that.
             return (true, 'x');
+        }
+    }
+
+    [TestClass]
+    public class Day10Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day10();
+            long result = sut.Part1(Resources.Day10_Debug);
+            Assert.AreEqual(26397, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day10();
+            long result = sut.Part1(Resources.Day10);
+            Assert.AreEqual(387363, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day10();
+            long result = sut.Part2(Resources.Day10_Debug);
+            Assert.AreEqual(288957, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day10();
+            long result = sut.Part2(Resources.Day10);
+            Assert.AreEqual(4330777059, result);
         }
     }
 }
