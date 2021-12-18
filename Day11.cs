@@ -1,26 +1,25 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day11 : IAdeventOfCodeDay
+    internal class Day11
     {
-        public string Input => Resources.Day11;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            Board board = CreateBoard();
+            Board board = CreateBoard(input);
 
             for (int step = 0; step < 100; step++)
             {
                 board.NextStep();
             }
 
-            return board.Flashes.ToString();
+            return board.Flashes;
         }
 
-        public string Part2()
+        public int Part2(string input)
         {
-            Board board = CreateBoard();
+            Board board = CreateBoard(input);
 
             int step = 0;
 
@@ -32,14 +31,14 @@ namespace AdventOfCode2021
 
                 if (board.Cells.All(x => x.FlashedThisStep))
                 {
-                    return step.ToString();
+                    return step;
                 }
             }
         }
 
-        private Board CreateBoard()
+        private Board CreateBoard(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             var cells = new List<Cell>();
 
@@ -174,6 +173,42 @@ namespace AdventOfCode2021
 
                 return neighbours;
             }
+        }
+    }
+
+    [TestClass]
+    public class Day11Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day11();
+            int result = sut.Part1(Resources.Day11_Debug);
+            Assert.AreEqual(1656, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day11();
+            int result = sut.Part1(Resources.Day11);
+            Assert.AreEqual(1732, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day11();
+            int result = sut.Part2(Resources.Day11_Debug);
+            Assert.AreEqual(195, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day11();
+            int result = sut.Part2(Resources.Day11);
+            Assert.AreEqual(290, result);
         }
     }
 }
