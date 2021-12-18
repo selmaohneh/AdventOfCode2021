@@ -1,26 +1,25 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day12 : IAdeventOfCodeDay
+    internal class Day12
     {
-        public string Input => Resources.Day12;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            Dictionary<Node, HashSet<Node>> graph = CreateGraph();
+            Dictionary<Node, HashSet<Node>> graph = CreateGraph(input);
 
             ExplorePath(new Node("start"),
                         new Node("end"),
                         graph,
                         new HashSet<Node>());
 
-            return _count.ToString();
+            return _count;
         }
 
-        public string Part2()
+        public int Part2(string input)
         {
-            Dictionary<Node, HashSet<Node>> graph = CreateGraph();
+            Dictionary<Node, HashSet<Node>> graph = CreateGraph(input);
 
             ExplorePath2(new Node("start"),
                          new Node("end"),
@@ -28,12 +27,12 @@ namespace AdventOfCode2021
                          new HashSet<Node>(),
                          new HashSet<Node>());
 
-            return _count.ToString();
+            return _count;
         }
 
-        private Dictionary<Node, HashSet<Node>> CreateGraph()
+        private Dictionary<Node, HashSet<Node>> CreateGraph(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             var graph = new Dictionary<Node, HashSet<Node>>();
 
@@ -160,6 +159,42 @@ namespace AdventOfCode2021
 
             public string Name { get; }
             public bool IsBig => Name.All(Char.IsUpper);
+        }
+    }
+
+    [TestClass]
+    public class Day12Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day12();
+            int result = sut.Part1(Resources.Day12_Debug);
+            Assert.AreEqual(10, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day12();
+            int result = sut.Part1(Resources.Day12);
+            Assert.AreEqual(4411, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day12();
+            int result = sut.Part2(Resources.Day12_Debug);
+            Assert.AreEqual(36, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day12();
+            int result = sut.Part2(Resources.Day12);
+            Assert.AreEqual(136767, result);
         }
     }
 }
