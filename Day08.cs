@@ -1,14 +1,13 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day8 : IAdeventOfCodeDay
+    internal class Day08
     {
-        public string Input => Resources.Day8;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             int result = 0;
 
@@ -28,12 +27,12 @@ namespace AdventOfCode2021
                 }
             }
 
-            return result.ToString();
+            return result;
         }
 
-        public string Part2()
+        public int Part2(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             int result = 0;
 
@@ -62,7 +61,7 @@ namespace AdventOfCode2021
                 result += number;
             }
 
-            return result.ToString();
+            return result;
         }
 
         private Dictionary<int, Segment> DecodeAllSegments(string[] inputValues)
@@ -170,6 +169,42 @@ namespace AdventOfCode2021
 
                 return inputValue.Length == Wires.Length;
             }
+        }
+    }
+
+    [TestClass]
+    public class Day08Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day08();
+            int result = sut.Part1(Resources.Day08_Debug);
+            Assert.AreEqual(26, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day08();
+            int result = sut.Part1(Resources.Day08);
+            Assert.AreEqual(294, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day08();
+            int result = sut.Part2(Resources.Day08_Debug);
+            Assert.AreEqual(61229, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day08();
+            int result = sut.Part2(Resources.Day08);
+            Assert.AreEqual(973292, result);
         }
     }
 }

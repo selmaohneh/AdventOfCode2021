@@ -474,6 +474,35 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to fdaebc egc gc bgefc ecbagd becfa fagc afgbec gdcbfae bgdef | cgfa gcebad ebcadfg cefgbad
+        ///dbafgec ce cgefdb abged aedc bec deafgb cbage edgbac gfacb | abcfg edca febdcg ecb
+        ///cad dgec fbdea bfgcad efabgc gacedf cfgae cd cdefa dbceagf | adefb aebfd aecbfg cedfa
+        ///ebaf fa abfcd cbfde egbfcad gdbac cabfed gedcfb gafedc adf | fgdbcae dabfc aedcbf af
+        ///decfag ca bdfag afc edca fdbceg dfgac cabfge gcdef cbfgdea | bafceg dagfc bacfdge fdgab
+        ///gcedf bdgafe gbadec bgc cfab bc gcfdb dbfag facbegd fagbcd | dbfcgea dgfbca  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day08 {
+            get {
+                return ResourceManager.GetString("Day08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
+        ///edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
+        ///fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
+        ///fbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb
+        ///aecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga | gecf egdcabf bgf bfgea
+        ///fgeab ca afcebg bdacfeg cfaedg gcfdb baec bfadeg bafgc acf | gebdcfa ecba ca fadegcb
+        ///dbcfg [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day08_Debug {
+            get {
+                return ResourceManager.GetString("Day08_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [&lt;&lt;{[{([([({&lt;{&lt;&gt;{}}&gt;[[[]{}][[]&lt;&gt;])}{[(())][[&lt;&gt;{}]{[]{}}]})](([{&lt;&lt;&gt;{}&gt;[()&lt;&gt;]}&lt;&lt;&lt;&gt;()&gt;{{}&lt;&gt;}&gt;]{[{{}()}[(){}]]})
         ///[({[[(&lt;{[&lt;[&lt;{({}[])(&lt;&gt;{})}(([]&lt;&gt;)[[]()])&gt;{[&lt;{}()&gt;&lt;{}{}&gt;][&lt;[]()&gt;({}())]}]&lt;(&lt;(()&lt;&gt;){{}{}}&gt;({()()}(()[])))&gt;&gt;[([
         ///(&lt;([[&lt;(&lt;&lt;{((&lt;&lt;&lt;&gt;{}&gt;{{}{}}&gt;({()&lt;&gt;}{()&lt;&gt;}))&lt;[(&lt;&gt;&lt;&gt;)&lt;&lt;&gt;()&gt;]{((){}){[]&lt;&gt;}}&gt;)}({&lt;[(()[]){()[]}]{((
@@ -801,20 +830,6 @@ namespace AdventOfCode2021.Properties {
         internal static string Day15_Debug {
             get {
                 return ResourceManager.GetString("Day15_Debug", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to fdaebc egc gc bgefc ecbagd becfa fagc afgbec gdcbfae bgdef | cgfa gcebad ebcadfg cefgbad
-        ///dbafgec ce cgefdb abged aedc bec deafgb cbage edgbac gfacb | abcfg edca febdcg ecb
-        ///cad dgec fbdea bfgcad efabgc gacedf cfgae cd cdefa dbceagf | adefb aebfd aecbfg cedfa
-        ///ebaf fa abfcd cbfde egbfcad gdbac cabfed gedcfb gafedc adf | fgdbcae dabfc aedcbf af
-        ///decfag ca bdfag afc edca fdbceg dfgac cabfge gcdef cbfgdea | bafceg dagfc bacfdge fdgab
-        ///gcedf bdgafe gbadec bgc cfab bc gcfdb dbfag facbegd fagbcd | dbfcgea dgfbca  [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Day8 {
-            get {
-                return ResourceManager.GetString("Day8", resourceCulture);
             }
         }
         
