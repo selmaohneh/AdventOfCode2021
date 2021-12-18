@@ -1,36 +1,35 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day9 : IAdeventOfCodeDay
+    internal class Day09
     {
-        public string Input => Resources.Day9;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            IDictionary<Point, int> map = CreateMap();
+            IDictionary<Point, int> map = CreateMap(input);
 
             HashSet<Point> lowPoints = FindLowPoints(map);
 
             var riskLevels = lowPoints.Select(x => map[x] + 1);
 
-            return riskLevels.Sum().ToString();
+            return riskLevels.Sum();
         }
 
-        public string Part2()
+        public int Part2(string input)
         {
-            IDictionary<Point, int> map = CreateMap();
+            IDictionary<Point, int> map = CreateMap(input);
 
             HashSet<Point> lowPoints = FindLowPoints(map);
 
-            HashSet<int> basinSizes = GetBasinSizes(lowPoints, map);
+            List<int> basinSizes = GetBasinSizes(lowPoints, map);
 
             int result = GetProductOfBiggestThreeBasins(basinSizes);
 
-            return result.ToString();
+            return result;
         }
 
-        private int GetProductOfBiggestThreeBasins(HashSet<int> basinSizes)
+        private int GetProductOfBiggestThreeBasins(List<int> basinSizes)
         {
             int result = 1;
             var threeBiggestBasins = basinSizes.OrderByDescending(x => x).Take(3);
@@ -43,9 +42,9 @@ namespace AdventOfCode2021
             return result;
         }
 
-        private HashSet<int> GetBasinSizes(HashSet<Point> lowPoints, IDictionary<Point, int> map)
+        private List<int> GetBasinSizes(HashSet<Point> lowPoints, IDictionary<Point, int> map)
         {
-            var basinSizes = new HashSet<int>();
+            var basinSizes = new List<int>();
 
             foreach (Point lowPoint in lowPoints)
             {
@@ -79,10 +78,10 @@ namespace AdventOfCode2021
             return basinSizes;
         }
 
-        private IDictionary<Point, int> CreateMap()
+        private IDictionary<Point, int> CreateMap(string input)
         {
             var map = new Dictionary<Point, int>();
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             for (int y = 0; y < lines.Length; y++)
             {
@@ -154,6 +153,42 @@ namespace AdventOfCode2021
 
                 return adjacents;
             }
+        }
+    }
+
+    [TestClass]
+    public class Day09Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day09();
+            int result = sut.Part1(Resources.Day09_Debug);
+            Assert.AreEqual(15, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day09();
+            int result = sut.Part1(Resources.Day09);
+            Assert.AreEqual(577, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day09();
+            int result = sut.Part2(Resources.Day09_Debug);
+            Assert.AreEqual(1134, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day09();
+            int result = sut.Part2(Resources.Day09);
+            Assert.AreEqual(1069200, result);
         }
     }
 }
