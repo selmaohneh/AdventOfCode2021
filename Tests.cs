@@ -6,22 +6,7 @@ namespace AdventOfCode2021
     public class Tests
     {
 
-        [TestMethod]
-        public void Day6_Part1()
-        {
-            var sut = new Day6();
-            string result = sut.Part1();
-            Assert.AreEqual("372300", result);
-        }
-
-        [TestMethod]
-        public void Day6_Part2()
-        {
-            var sut = new Day6();
-            string result = sut.Part2();
-            Assert.AreEqual("1675781200288", result);
-        }
-
+       
         [TestMethod]
         public void Day7_Part1()
         {

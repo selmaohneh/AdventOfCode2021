@@ -1,14 +1,13 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day6 : IAdeventOfCodeDay
+    internal class Day06
     {
-        public string Input { get; } = Resources.Day6;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            var fishes = Input.Split(",").Select(Int32.Parse).ToList();
+            var fishes = input.Split(",").Select(Int32.Parse).ToList();
 
             for (int dayIndex = 0; dayIndex < 80; dayIndex++)
             {
@@ -30,12 +29,12 @@ namespace AdventOfCode2021
                 }
             }
 
-            return fishes.Count.ToString();
+            return fishes.Count;
         }
 
-        public string Part2()
+        public long Part2(string input)
         {
-            var initialFishes = Input.Split(",").Select(Int32.Parse).ToList();
+            var initialFishes = input.Split(",").Select(Int32.Parse).ToList();
 
             long[] countsPerNumber = new long[9];
 
@@ -62,7 +61,43 @@ namespace AdventOfCode2021
                 }
             }
 
-            return countsPerNumber.Sum().ToString();
+            return countsPerNumber.Sum();
+        }
+    }
+
+    [TestClass]
+    public class Day06Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day06();
+            int result = sut.Part1(Resources.Day06_Debug);
+            Assert.AreEqual(5934, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day06();
+            int result = sut.Part1(Resources.Day06);
+            Assert.AreEqual(372300, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day06();
+            long result = sut.Part2(Resources.Day06_Debug);
+            Assert.AreEqual(26984457539, result);
+        }
+
+        [TestMethod]
+        public void Day6_Part2()
+        {
+            var sut = new Day06();
+            long result = sut.Part2(Resources.Day06);
+            Assert.AreEqual(1675781200288, result);
         }
     }
 }
