@@ -1,14 +1,13 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day7 : IAdeventOfCodeDay
+    internal class Day07
     {
-        public string Input { get; } = Resources.Day7;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            var initialPositions = Input.Split(",").Select(Int32.Parse).ToList();
+            var initialPositions = input.Split(",").Select(Int32.Parse).ToList();
 
             int minPosition = initialPositions.Min();
             int maxPosition = initialPositions.Max();
@@ -28,12 +27,12 @@ namespace AdventOfCode2021
                 fuelConsumptionsPerTargetPosition.Add(totalFuelConsumption);
             }
 
-            return fuelConsumptionsPerTargetPosition.Min().ToString();
+            return fuelConsumptionsPerTargetPosition.Min();
         }
 
-        public string Part2()
+        public int Part2(string input)
         {
-            var initialPositions = Input.Split(",").Select(Int32.Parse).ToList();
+            var initialPositions = input.Split(",").Select(Int32.Parse).ToList();
 
             int minPosition = initialPositions.Min();
             int maxPosition = initialPositions.Max();
@@ -58,7 +57,43 @@ namespace AdventOfCode2021
                 fuelConsumptionsPerTargetPosition.Add(totalFuelConsumption);
             }
 
-            return fuelConsumptionsPerTargetPosition.Min().ToString();
+            return fuelConsumptionsPerTargetPosition.Min();
+        }
+    }
+
+    [TestClass]
+    public class Day07Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day07();
+            int result = sut.Part1(Resources.Day07_Debug);
+            Assert.AreEqual(37, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day07();
+            int result = sut.Part1(Resources.Day07);
+            Assert.AreEqual(328262, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day07();
+            int result = sut.Part2(Resources.Day07_Debug);
+            Assert.AreEqual(168, result);
+        }
+
+        [TestMethod]
+        public void Day7_Part2()
+        {
+            var sut = new Day07();
+            int result = sut.Part2(Resources.Day07);
+            Assert.AreEqual(90040997, result);
         }
     }
 }

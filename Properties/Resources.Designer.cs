@@ -456,6 +456,24 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1101,1,29,67,1102,0,1,65,1008,65,35,66,1005,66,28,1,67,65,20,4,0,1001,65,1,65,1106,0,8,99,35,67,101,99,105,32,110,39,101,115,116,32,112,97,115,32,117,110,101,32,105,110,116,99,111,100,101,32,112,114,111,103,114,97,109,10,161,185,311,752,668,728,210,741,636,381,1222,509,282,156,806,624,31,300,711,128,146,368,306,239,7,519,441,368,179,155,704,274,237,710,164,55,217,1007,0,701,812,713,127,536,320,163,454,310,726,433,426,102,1350,736,408,951,307,15,333,462,755,797,265,540,680,357,914,195,468,1034,583,413,1293,4 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day07 {
+            get {
+                return ResourceManager.GetString("Day07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16,1,2,0,4,2,7,1,2,14.
+        /// </summary>
+        internal static string Day07_Debug {
+            get {
+                return ResourceManager.GetString("Day07_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [&lt;&lt;{[{([([({&lt;{&lt;&gt;{}}&gt;[[[]{}][[]&lt;&gt;])}{[(())][[&lt;&gt;{}]{[]{}}]})](([{&lt;&lt;&gt;{}&gt;[()&lt;&gt;]}&lt;&lt;&lt;&gt;()&gt;{{}&lt;&gt;}&gt;]{[{{}()}[(){}]]})
         ///[({[[(&lt;{[&lt;[&lt;{({}[])(&lt;&gt;{})}(([]&lt;&gt;)[[]()])&gt;{[&lt;{}()&gt;&lt;{}{}&gt;][&lt;[]()&gt;({}())]}]&lt;(&lt;(()&lt;&gt;){{}{}}&gt;({()()}(()[])))&gt;&gt;[([
         ///(&lt;([[&lt;(&lt;&lt;{((&lt;&lt;&lt;&gt;{}&gt;{{}{}}&gt;({()&lt;&gt;}{()&lt;&gt;}))&lt;[(&lt;&gt;&lt;&gt;)&lt;&lt;&gt;()&gt;]{((){}){[]&lt;&gt;}}&gt;)}({&lt;[(()[]){()[]}]{((
@@ -783,15 +801,6 @@ namespace AdventOfCode2021.Properties {
         internal static string Day15_Debug {
             get {
                 return ResourceManager.GetString("Day15_Debug", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1101,1,29,67,1102,0,1,65,1008,65,35,66,1005,66,28,1,67,65,20,4,0,1001,65,1,65,1106,0,8,99,35,67,101,99,105,32,110,39,101,115,116,32,112,97,115,32,117,110,101,32,105,110,116,99,111,100,101,32,112,114,111,103,114,97,109,10,161,185,311,752,668,728,210,741,636,381,1222,509,282,156,806,624,31,300,711,128,146,368,306,239,7,519,441,368,179,155,704,274,237,710,164,55,217,1007,0,701,812,713,127,536,320,163,454,310,726,433,426,102,1350,736,408,951,307,15,333,462,755,797,265,540,680,357,914,195,468,1034,583,413,1293,4 [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Day7 {
-            get {
-                return ResourceManager.GetString("Day7", resourceCulture);
             }
         }
         
