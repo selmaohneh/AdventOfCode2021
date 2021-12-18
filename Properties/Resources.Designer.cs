@@ -385,6 +385,59 @@ namespace AdventOfCode2021.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 510,771 -&gt; 510,322
+        ///753,99 -&gt; 753,280
+        ///160,330 -&gt; 33,330
+        ///700,793 -&gt; 700,892
+        ///327,168 -&gt; 327,690
+        ///264,203 -&gt; 264,839
+        ///135,134 -&gt; 314,134
+        ///209,759 -&gt; 41,759
+        ///474,514 -&gt; 491,531
+        ///977,988 -&gt; 42,53
+        ///924,245 -&gt; 278,891
+        ///466,952 -&gt; 466,135
+        ///381,560 -&gt; 822,119
+        ///339,828 -&gt; 339,730
+        ///114,775 -&gt; 114,508
+        ///472,44 -&gt; 472,32
+        ///815,512 -&gt; 188,512
+        ///516,579 -&gt; 987,108
+        ///219,386 -&gt; 219,838
+        ///456,592 -&gt; 456,496
+        ///778,300 -&gt; 355,300
+        ///277,27 -&gt; 69,27
+        ///889,217 -&gt; 307,799
+        ///470,471 -&gt; 249,471
+        ///655,867 -&gt; 20,232
+        ///845,623 -&gt; 675,623
+        ///278 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day05 {
+            get {
+                return ResourceManager.GetString("Day05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0,9 -&gt; 5,9
+        ///8,0 -&gt; 0,8
+        ///9,4 -&gt; 3,4
+        ///2,2 -&gt; 2,1
+        ///7,0 -&gt; 7,4
+        ///6,4 -&gt; 2,0
+        ///0,9 -&gt; 2,9
+        ///3,4 -&gt; 1,4
+        ///0,0 -&gt; 8,8
+        ///5,5 -&gt; 8,2.
+        /// </summary>
+        internal static string Day05_Debug {
+            get {
+                return ResourceManager.GetString("Day05_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [&lt;&lt;{[{([([({&lt;{&lt;&gt;{}}&gt;[[[]{}][[]&lt;&gt;])}{[(())][[&lt;&gt;{}]{[]{}}]})](([{&lt;&lt;&gt;{}&gt;[()&lt;&gt;]}&lt;&lt;&lt;&gt;()&gt;{{}&lt;&gt;}&gt;]{[{{}()}[(){}]]})
         ///[({[[(&lt;{[&lt;[&lt;{({}[])(&lt;&gt;{})}(([]&lt;&gt;)[[]()])&gt;{[&lt;{}()&gt;&lt;{}{}&gt;][&lt;[]()&gt;({}())]}]&lt;(&lt;(()&lt;&gt;){{}{}}&gt;({()()}(()[])))&gt;&gt;[([
         ///(&lt;([[&lt;(&lt;&lt;{((&lt;&lt;&lt;&gt;{}&gt;{{}{}}&gt;({()&lt;&gt;}{()&lt;&gt;}))&lt;[(&lt;&gt;&lt;&gt;)&lt;&lt;&gt;()&gt;]{((){}){[]&lt;&gt;}}&gt;)}({&lt;[(()[]){()[]}]{((
@@ -712,41 +765,6 @@ namespace AdventOfCode2021.Properties {
         internal static string Day15_Debug {
             get {
                 return ResourceManager.GetString("Day15_Debug", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 510,771 -&gt; 510,322
-        ///753,99 -&gt; 753,280
-        ///160,330 -&gt; 33,330
-        ///700,793 -&gt; 700,892
-        ///327,168 -&gt; 327,690
-        ///264,203 -&gt; 264,839
-        ///135,134 -&gt; 314,134
-        ///209,759 -&gt; 41,759
-        ///474,514 -&gt; 491,531
-        ///977,988 -&gt; 42,53
-        ///924,245 -&gt; 278,891
-        ///466,952 -&gt; 466,135
-        ///381,560 -&gt; 822,119
-        ///339,828 -&gt; 339,730
-        ///114,775 -&gt; 114,508
-        ///472,44 -&gt; 472,32
-        ///815,512 -&gt; 188,512
-        ///516,579 -&gt; 987,108
-        ///219,386 -&gt; 219,838
-        ///456,592 -&gt; 456,496
-        ///778,300 -&gt; 355,300
-        ///277,27 -&gt; 69,27
-        ///889,217 -&gt; 307,799
-        ///470,471 -&gt; 249,471
-        ///655,867 -&gt; 20,232
-        ///845,623 -&gt; 675,623
-        ///278 [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Day5 {
-            get {
-                return ResourceManager.GetString("Day5", resourceCulture);
             }
         }
         
