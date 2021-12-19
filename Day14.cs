@@ -1,15 +1,15 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day14 : IAdeventOfCodeDay
+    internal class Day14
     {
         private Dictionary<string, long> _characterCounts;
-        public string Input => Resources.Day14;
 
-        public string Part1()
+        public int Part1(string input)
         {
-            (string template, List<InsertionRule> rules) = GetTemplateAndInsertionRules();
+            (string template, List<InsertionRule> rules) = GetTemplateAndInsertionRules(input);
 
             string result = template;
 
@@ -39,12 +39,12 @@ namespace AdventOfCode2021
             int mostCommon = groups.First().Count();
             int leastCommon = groups.Last().Count();
 
-            return (mostCommon - leastCommon).ToString();
+            return (mostCommon - leastCommon);
         }
 
-        private (string template, List<InsertionRule> rules) GetTemplateAndInsertionRules()
+        private (string template, List<InsertionRule> rules) GetTemplateAndInsertionRules(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
             string template = lines[0];
 
@@ -62,9 +62,9 @@ namespace AdventOfCode2021
             return (template, rules);
         }
 
-        public string Part2()
+        public long Part2(string input)
         {
-            (string template, List<InsertionRule> rules) = GetTemplateAndInsertionRules();
+            (string template, List<InsertionRule> rules) = GetTemplateAndInsertionRules(input);
 
             // count initial amount of rules in template.
             for (int i = 0; i < template.Length - 1; i++)
@@ -121,7 +121,7 @@ namespace AdventOfCode2021
             long mostCommon = _characterCounts.Select(x => x.Value).Max();
             long leastCommon = _characterCounts.Select(x => x.Value).Min();
 
-            return (mostCommon - leastCommon).ToString();
+            return (mostCommon - leastCommon);
         }
 
         private void AddOrIncrement(string character, long count)
@@ -152,6 +152,42 @@ namespace AdventOfCode2021
             {
                 return $"{Pair} --> {Insertion}: {Count}";
             }
+        }
+    }
+
+    [TestClass]
+    public class Day14Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day14();
+            int result = sut.Part1(Resources.Day14_Debug);
+            Assert.AreEqual(1588, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day14();
+            int result = sut.Part1(Resources.Day14);
+            Assert.AreEqual(3143, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day14();
+            long result = sut.Part2(Resources.Day14_Debug);
+            Assert.AreEqual(2188189693529, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day14();
+            long result = sut.Part2(Resources.Day14);
+            Assert.AreEqual(4110215602456, result);
         }
     }
 }
