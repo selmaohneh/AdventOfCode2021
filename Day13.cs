@@ -1,14 +1,13 @@
 ﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day13 : IAdeventOfCodeDay
+    internal class Day13
     {
-        public string Input => Resources.Day13;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            (List<FoldInstruction> foldInstructions, List<Cell> dots) = GetDotsAndFoldInstructions();
+            (List<FoldInstruction> foldInstructions, List<Cell> dots) = GetDotsAndFoldInstructions(input);
 
             dots = Fold(foldInstructions.Take(1).ToList(), dots);
 
@@ -19,12 +18,12 @@ namespace AdventOfCode2021
                              })
                             .Count();
 
-            return count.ToString();
+            return count;
         }
 
-        private (List<FoldInstruction> foldInstructions, List<Cell> dots) GetDotsAndFoldInstructions()
+        private (List<FoldInstruction> foldInstructions, List<Cell> dots) GetDotsAndFoldInstructions(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
             var foldInstructions = new List<FoldInstruction>();
             var dots = new List<Cell>();
@@ -55,9 +54,9 @@ namespace AdventOfCode2021
             return (foldInstructions, dots);
         }
 
-        public string Part2()
+        public string Part2(string input)
         {
-            (List<FoldInstruction> foldInstructions, List<Cell> dots) = GetDotsAndFoldInstructions();
+            (List<FoldInstruction> foldInstructions, List<Cell> dots) = GetDotsAndFoldInstructions(input);
 
             dots = Fold(foldInstructions, dots);
 
@@ -158,6 +157,42 @@ namespace AdventOfCode2021
 
             public string Coordinate { get; set; }
             public int Number { get; set; }
+        }
+    }
+
+    [TestClass]
+    public class Day13Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day13();
+            int result = sut.Part1(Resources.Day13_Debug);
+            Assert.AreEqual(17, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day13();
+            int result = sut.Part1(Resources.Day13);
+            Assert.AreEqual(671, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day13();
+            string result = sut.Part2(Resources.Day13);
+
+            Assert.AreEqual(@"###...##..###..#..#..##..###..#..#.#...
+#..#.#..#.#..#.#..#.#..#.#..#.#.#..#...
+#..#.#....#..#.####.#..#.#..#.##...#...
+###..#....###..#..#.####.###..#.#..#...
+#....#..#.#....#..#.#..#.#.#..#.#..#...
+#.....##..#....#..#.#..#.#..#.#..#.####
+",
+                            result);
         }
     }
 }

@@ -11,30 +11,7 @@ namespace AdventOfCode2021
            
            
       
-        [TestMethod]
-        public void Day13_Part1()
-        {
-            var sut = new Day13();
-            string result = sut.Part1();
-            Assert.AreEqual("671", result);
-        }
-
-        [TestMethod]
-        public void Day13_Part2()
-        {
-            var sut = new Day13();
-            string result = sut.Part2();
-
-            Assert.AreEqual(@"###...##..###..#..#..##..###..#..#.#...
-#..#.#..#.#..#.#..#.#..#.#..#.#.#..#...
-#..#.#....#..#.####.#..#.#..#.##...#...
-###..#....###..#..#.####.###..#.#..#...
-#....#..#.#....#..#.#..#.#.#..#.#..#...
-#.....##..#....#..#.#..#.#..#.#..#.####
-",
-                            result);
-        }
-
+      
         [TestMethod]
         public void Day14_Part1()
         {
