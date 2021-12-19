@@ -77,7 +77,7 @@ namespace AdventOfCode2021
 
         private void ExplorePath(Node currentNode, Node targetNode, Dictionary<Node, HashSet<Node>> graph, HashSet<Node> visitedNodes)
         {
-            if (Equals(currentNode, targetNode))
+            if (currentNode.Name == targetNode.Name)
             {
                 _count++;
 
@@ -111,7 +111,7 @@ namespace AdventOfCode2021
                                   HashSet<Node> visitedNodes,
                                   HashSet<Node> twiceVisistedSmallNodes)
         {
-            if (Equals(currentNode, targetNode))
+            if (currentNode.Name == targetNode.Name)
             {
                 _count++;
 
