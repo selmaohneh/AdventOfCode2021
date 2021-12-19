@@ -1,16 +1,13 @@
-﻿using System.ComponentModel;
-using System.Reflection.Metadata.Ecma335;
-using AdventOfCode2021.Properties;
+﻿using AdventOfCode2021.Properties;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
-    internal class Day15 : IAdeventOfCodeDay
+    internal class Day15
     {
-        public string Input => Resources.Day15;
-
-        public string Part1()
+        public int Part1(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             var graph = new Dictionary<Point, Node>();
 
@@ -37,12 +34,12 @@ namespace AdventOfCode2021
 
             int risk = path.Skip(1).Sum(x => x.Cost);
 
-            return risk.ToString();
+            return risk;
         }
 
-        public string Part2()
+        public int Part2(string input)
         {
-            string[] lines = Input.Split(Environment.NewLine);
+            string[] lines = input.Split(Environment.NewLine);
 
             var graph = new Dictionary<Point, Node>();
 
@@ -118,7 +115,43 @@ namespace AdventOfCode2021
 
             int risk = path.Skip(1).Sum(x => x.Cost);
 
-            return risk.ToString();
+            return risk;
+        }
+    }
+
+    [TestClass]
+    public class Day15Tests
+    {
+        [TestMethod]
+        public void Part1_Debug()
+        {
+            var sut = new Day15();
+            int result = sut.Part1(Resources.Day15_Debug);
+            Assert.AreEqual(40, result);
+        }
+
+        [TestMethod]
+        public void Part1()
+        {
+            var sut = new Day15();
+            int result = sut.Part1(Resources.Day15);
+            Assert.AreEqual(390, result);
+        }
+
+        [TestMethod]
+        public void Part2_Debug()
+        {
+            var sut = new Day15();
+            int result = sut.Part2(Resources.Day15_Debug);
+            Assert.AreEqual(315, result);
+        }
+
+        [TestMethod]
+        public void Part2()
+        {
+            var sut = new Day15();
+            int result = sut.Part2(Resources.Day15);
+            Assert.AreEqual(2814, result);
         }
     }
 }
